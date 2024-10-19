@@ -1,10 +1,11 @@
 extends Control
 
+@onready var start_game = preload("res://Game/GameTest.tscn") as PackedScene
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$VBoxContainer/StartButton.grab_focus()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -12,7 +13,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_button_pressed() -> void:
-	pass # Replace with function body.
+	get_tree().change_scene_to_packed(start_game)
 
 
 func _on_load_button_pressed() -> void:
