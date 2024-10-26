@@ -33,3 +33,6 @@ sprite_frames = SubResource("SpriteFrames_pl0lk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_okd0v")
+
+[node name="AttackSpeed" type="Timer" parent="."]
+one_shot = true
