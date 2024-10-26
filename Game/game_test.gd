@@ -1,5 +1,6 @@
 extends Node2D
 
+#@onready var open_menu = preload("res://Menus/MainMenu.tscn") as PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
