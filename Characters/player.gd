@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @export var ACCELERATION = 1000
 @export var FRICTION = 950
-@export var ATTACKSPEED = 0.5
 @export var PROJECTILE_CURVE = 0.3
 
 @export var stats : BaseStats
@@ -17,8 +16,8 @@ func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats
 
 func _ready() :
-	_shoot()
-	
+	pass
+		
 func _physics_process(delta: float) -> void:
 	_move(delta)
 
@@ -71,4 +70,4 @@ func _shoot() :
 		instance.spawnRot = rotation
 		instance.zdex = z_index - 1
 		game.add_child.call_deferred(instance)
-		attackSpeed.start(ATTACKSPEED)
+		attackSpeed.start(stats.atack_speed)
