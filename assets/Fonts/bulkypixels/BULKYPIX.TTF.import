@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c4m7n43txsndc"
-path="res://.godot/imported/Jazzy_HuitBits.ttf-8d97014ec2d6defd3d732242befb47ab.fontdata"
+uid="uid://b1w54j6exbflq"
+path="res://.godot/imported/BULKYPIX.TTF-a45b33759bf032b4b918114439d8ecae.fontdata"
 
 [deps]
 
-source_file="res://assets/Jazzy_HuitBits.ttf"
-dest_files=["res://.godot/imported/Jazzy_HuitBits.ttf-8d97014ec2d6defd3d732242befb47ab.fontdata"]
+source_file="res://assets/Fonts/bulkypixels/BULKYPIX.TTF"
+dest_files=["res://.godot/imported/BULKYPIX.TTF-a45b33759bf032b4b918114439d8ecae.fontdata"]
 
 [params]
 

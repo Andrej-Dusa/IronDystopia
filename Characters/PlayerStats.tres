@@ -6,6 +6,9 @@
 script = ExtResource("1_g8x6w")
 character_type = "Player"
 max_health = 10
-power = 5
-max_speed = 200
-atack_speed = 1
+damage = 1
+max_movement_speed = 200.0
+atack_speed = 0.5
+projectile_speed = 1
+attack_range = 0
+luck = 1

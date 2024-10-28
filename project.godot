@@ -13,8 +13,12 @@ config_version=5
 config/name="IronDystopia"
 run/main_scene="res://Menus/MainMenu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://assets/game_icon.png"
+config/icon="res://assets/Icons/game_icon.png"
 config/windows_native_icon="res://assets/game_icon.ico"
+
+[autoload]
+
+Enums="*res://Globals/Globals.gd"
 
 [display]
 

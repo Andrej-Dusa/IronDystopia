@@ -2,12 +2,9 @@ extends CharacterBody2D
 
 @export var ACCELERATION = 1000
 @export var FRICTION = 950
-@export var ATTACKSPEED = 0.5
 @export var PROJECTILE_CURVE = 0.3
 
-@onready var stats = load("res://Characters/PlayerStats.tres")
-
-@onready var current_health: int = stats.max_health
+@export var stats : BaseStats
 
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
@@ -19,8 +16,8 @@ func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats
 
 func _ready() :
-	_shoot()
-	
+	pass
+		
 func _physics_process(delta: float) -> void:
 	_move(delta)
 
@@ -63,7 +60,7 @@ func _apply_friction(amount) :
 
 func _apply_movement(acceleration) :
 	velocity += acceleration
-	velocity = velocity.limit_length(stats.max_speed)
+	velocity = velocity.limit_length(stats.max_movement_speed)
 		
 func _shoot() :
 	if attackSpeed.is_stopped():
@@ -73,4 +70,4 @@ func _shoot() :
 		instance.spawnRot = rotation
 		instance.zdex = z_index - 1
 		game.add_child.call_deferred(instance)
-		attackSpeed.start(ATTACKSPEED)
+		attackSpeed.start(stats.atack_speed)

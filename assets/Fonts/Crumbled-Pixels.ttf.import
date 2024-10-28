@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b1w54j6exbflq"
-path="res://.godot/imported/BULKYPIX.TTF-ac4f232eeb64f787457a99477af9e7fa.fontdata"
+uid="uid://dsc2e1tj0hb0r"
+path="res://.godot/imported/Crumbled-Pixels.ttf-a557f7eba2f40bd46b91be1fb61ea7cd.fontdata"
 
 [deps]
 
-source_file="res://assets/bulkypixels/BULKYPIX.TTF"
-dest_files=["res://.godot/imported/BULKYPIX.TTF-ac4f232eeb64f787457a99477af9e7fa.fontdata"]
+source_file="res://assets/Fonts/Crumbled-Pixels.ttf"
+dest_files=["res://.godot/imported/Crumbled-Pixels.ttf-a557f7eba2f40bd46b91be1fb61ea7cd.fontdata"]
 
 [params]
 
