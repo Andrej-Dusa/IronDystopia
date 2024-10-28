@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dsc2e1tj0hb0r"
-path="res://.godot/imported/Crumbled-Pixels.ttf-2586f1bffd8984768a97307515b8cff2.fontdata"
+uid="uid://c4m7n43txsndc"
+path="res://.godot/imported/Jazzy_HuitBits.ttf-b1e7743dfaa77f2c52dfea6b3ec0e36b.fontdata"
 
 [deps]
 
-source_file="res://assets/Crumbled-Pixels.ttf"
-dest_files=["res://.godot/imported/Crumbled-Pixels.ttf-2586f1bffd8984768a97307515b8cff2.fontdata"]
+source_file="res://assets/Fonts/Jazzy_HuitBits.ttf"
+dest_files=["res://.godot/imported/Jazzy_HuitBits.ttf-b1e7743dfaa77f2c52dfea6b3ec0e36b.fontdata"]
 
 [params]
 

@@ -5,9 +5,7 @@ extends CharacterBody2D
 @export var ATTACKSPEED = 0.5
 @export var PROJECTILE_CURVE = 0.3
 
-@onready var stats = load("res://Characters/PlayerStats.tres")
-
-@onready var current_health: int = stats.max_health
+@export var stats : BaseStats
 
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
@@ -63,7 +61,7 @@ func _apply_friction(amount) :
 
 func _apply_movement(acceleration) :
 	velocity += acceleration
-	velocity = velocity.limit_length(stats.max_speed)
+	velocity = velocity.limit_length(stats.max_movement_speed)
 		
 func _shoot() :
 	if attackSpeed.is_stopped():
