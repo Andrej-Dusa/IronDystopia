@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://jnbop1mqmajl"]
+
+[ext_resource type="Script" path="res://Resources/BaseStats.gd" id="1_g8x6w"]
+
+[resource]
+script = ExtResource("1_g8x6w")
+character_type = "Player"
+max_health = 10
+power = 5
+max_speed = 200
+atack_speed = 1

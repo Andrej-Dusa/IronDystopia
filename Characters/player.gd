@@ -1,16 +1,22 @@
 extends CharacterBody2D
 
-@export var MAX_SPEED = 200
 @export var ACCELERATION = 1000
 @export var FRICTION = 950
 @export var ATTACKSPEED = 0.5
 @export var PROJECTILE_CURVE = 0.3
+
+@onready var stats = load("res://Characters/PlayerStats.tres")
+
+@onready var current_health: int = stats.max_health
 
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
 @onready var attackSpeed = $AttackSpeed
 @onready var game = get_tree().get_root().get_node("GameTest")
 @onready var projectile = load("res://Game/Projectile.tscn")
+
+func load_stats(character_stats: BaseStats) -> void:
+	stats = character_stats
 
 func _ready() :
 	_shoot()
@@ -57,7 +63,7 @@ func _apply_friction(amount) :
 
 func _apply_movement(acceleration) :
 	velocity += acceleration
-	velocity = velocity.limit_length(MAX_SPEED)
+	velocity = velocity.limit_length(stats.max_speed)
 		
 func _shoot() :
 	if attackSpeed.is_stopped():

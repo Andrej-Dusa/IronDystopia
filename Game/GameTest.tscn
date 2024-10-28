@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://bkf4kun2dtr4r"]
 
 [ext_resource type="Script" path="res://Game/game_test.gd" id="1_io1t5"]
-[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/player.tscn" id="1_n4ajl"]
+[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/Player.tscn" id="1_n4ajl"]
 [ext_resource type="Texture2D" uid="uid://clar5dtlsogta" path="res://assets/test_wall_set.png" id="3_0sg00"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvub6"]
