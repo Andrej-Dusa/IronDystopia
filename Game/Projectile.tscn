@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://pcxyfrrkilun" path="res://assets/projectile.png" id="2_8e7kt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hylav"]
-radius = 8.06226
+radius = 9.0
 
-[node name="Projectile" type="CharacterBody2D"]
+[node name="Projectile" type="CharacterBody2D" groups=["friendly_projectiles"]]
 collision_layer = 16
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("1_5rdj5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

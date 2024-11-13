@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var SPEED = 200
 
+var damage = 10
 var dir : Vector2
 var spawnPos : Vector2
 var spawnRot : float
