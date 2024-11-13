@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BaseStats" load_steps=2 format=3 uid="uid://bjgmrsybivoak"]
+
+[ext_resource type="Script" path="res://Resources/BaseStats.gd" id="1_u52e4"]
+
+[resource]
+script = ExtResource("1_u52e4")
+character_type = "Character type"
+max_health = 20
+damage = 1
+max_movement_speed = 50.0
+atack_speed = 0.0
+projectile_speed = 0
+attack_range = 0
+luck = 1

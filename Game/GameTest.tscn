@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://bkf4kun2dtr4r"]
+[gd_scene load_steps=7 format=4 uid="uid://bkf4kun2dtr4r"]
 
 [ext_resource type="Script" path="res://Game/game_test.gd" id="1_io1t5"]
-[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/Player.tscn" id="1_n4ajl"]
+[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/player.tscn" id="1_n4ajl"]
 [ext_resource type="Texture2D" uid="uid://clar5dtlsogta" path="res://assets/test_wall_set.png" id="3_0sg00"]
+[ext_resource type="PackedScene" uid="uid://d1tnj4iq1rqsw" path="res://Characters/NPC/Enemy.tscn" id="4_yr8m8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvub6"]
 texture = ExtResource("3_0sg00")
@@ -54,3 +55,6 @@ position = Vector2(513, 287)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAAAAAEAAAAIAAAAAAAAAAIAAAAIAAAAAAAAAAMAAAAIAAAAAAAAAAQAAAAIAAAAAAAAAAUAAAAIAAAAAAAAAAYAAAAIAAAAAAAAAAcAAAAIAAAAAAAAAAgAAAADAAAAAAABAAAAAAAFAAAAAAABAAgAAAAGAAAAAAACAAAAAAAFAAAAAAACAAgAAAAGAAAAAAADAAAAAAAFAAAAAAADAAgAAAAGAAAAAAAEAAAAAAAFAAAAAAAEAAgAAAAGAAAAAAAFAAAAAAAFAAAAAAAFAAgAAAAGAAAAAAAGAAAAAAAFAAAAAAAGAAgAAAAGAAAAAAAHAAAAAAAFAAAAAAAHAAgAAAAGAAAAAAAIAAAAAAAFAAAAAAAIAAgAAAAGAAAAAAAJAAAAAAAFAAAAAAAJAAgAAAAGAAAAAAAKAAAAAAAFAAAAAAAKAAgAAAAGAAAAAAALAAAAAAAFAAAAAAALAAgAAAAGAAAAAAAMAAAAAAAFAAAAAAAMAAgAAAAGAAAAAAANAAAAAAAFAAAAAAANAAgAAAAGAAAAAAAOAAAAAAAFAAAAAAAOAAgAAAAGAAAAAAAPAAAAAAABAAAAAAAPAAEAAAAHAAAAAAAPAAIAAAAHAAAAAAAPAAMAAAAHAAAAAAAPAAQAAAAHAAAAAAAPAAUAAAAHAAAAAAAPAAYAAAAHAAAAAAAPAAcAAAAHAAAAAAAPAAgAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_xul0p")
+
+[node name="Enemy" parent="." instance=ExtResource("4_yr8m8")]
+position = Vector2(191, 202)
