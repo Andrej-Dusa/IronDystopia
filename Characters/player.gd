@@ -16,7 +16,7 @@ func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats
 
 func _ready() :
-	pass
+	load_stats(stats)
 		
 func _physics_process(delta: float) -> void:
 	_move(delta)
@@ -49,7 +49,6 @@ func _move(delta) :
 	else:
 		_apply_movement(axis * ACCELERATION * delta)
 	_get_looking_dir()
-	print(lookingDir)
 	move_and_slide()
 
 func _apply_friction(amount) :
@@ -69,5 +68,6 @@ func _shoot() :
 		instance.spawnPos = global_position
 		instance.spawnRot = rotation
 		instance.zdex = z_index - 1
+		instance.damage = stats.damage
 		game.add_child.call_deferred(instance)
 		attackSpeed.start(stats.atack_speed)
