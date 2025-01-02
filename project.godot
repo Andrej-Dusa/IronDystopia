@@ -25,7 +25,6 @@ GameTest="*res://Game/game_test.gd"
 
 window/size/viewport_width=1024
 window/size/viewport_height=576
-window/size/mode=3
 window/stretch/mode="viewport"
 
 [editor]

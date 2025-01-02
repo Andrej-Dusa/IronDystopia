@@ -28,9 +28,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
+	print("Body entered:", body)
+	print("Body type:", body.get_class())
 	if (body.is_in_group("player")) :
 		player = body
 		print("Player detected")
 		player_behaviour = true
-	if (body.is_in_group("friendly_projectiles")) :
+	if (body.collision_layer & (1 << 4)) :
 		print("Player projectile detected")

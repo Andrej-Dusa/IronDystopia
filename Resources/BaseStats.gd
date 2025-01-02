@@ -9,5 +9,5 @@ class_name BaseStats
 @export var max_movement_speed : float
 @export var atack_speed : float
 @export var projectile_speed : int
-@export var attack_range : int
+@export var attack_range : float
 @export var luck : int
