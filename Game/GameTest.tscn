@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=4 uid="uid://bkf4kun2dtr4r"]
 
 [ext_resource type="Script" path="res://Game/game_test.gd" id="1_io1t5"]
-[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/player.tscn" id="1_n4ajl"]
+[ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/Player.tscn" id="1_n4ajl"]
 [ext_resource type="Texture2D" uid="uid://clar5dtlsogta" path="res://assets/test_wall_set.png" id="3_0sg00"]
 [ext_resource type="PackedScene" uid="uid://d1tnj4iq1rqsw" path="res://Characters/NPC/Enemy.tscn" id="4_yr8m8"]
-[ext_resource type="PackedScene" uid="uid://gwojmgooskqk" path="res://GUI/gui.tscn" id="5_atfdh"]
+[ext_resource type="PackedScene" uid="uid://bu1hqyj5jq3r2" path="res://GUI/gui.tscn" id="5_4rc8g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvub6"]
 texture = ExtResource("3_0sg00")
@@ -60,4 +60,4 @@ tile_set = SubResource("TileSet_xul0p")
 [node name="Enemy" parent="." instance=ExtResource("4_yr8m8")]
 position = Vector2(191, 202)
 
-[node name="GUI" parent="." instance=ExtResource("5_atfdh")]
+[node name="GUI" parent="." instance=ExtResource("5_4rc8g")]

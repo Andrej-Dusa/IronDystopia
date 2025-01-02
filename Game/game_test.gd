@@ -8,20 +8,22 @@ var items = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if not has_node("GUI"):
+		print("Error: Node 'GUI' not found in the scene tree.")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_cancel") :
+	var instance = $GUI if has_node("GUI") else null
+	if not instance:
+		return  # Safely exit if 'GUI' is missing
+	if Input.is_action_just_pressed("ui_cancel"):
 		_on_exit_pressed()
 	elif Input.is_action_just_pressed("inventory"):
-		var instance = $GUI
-		if instance:
-			if instance.is_visible():
-				instance.hide() 
-			else:
-				instance.show()
+		if instance.is_visible():
+			instance.hide()
+		else:
+			instance.show()
 
 func _on_exit_pressed():
 	get_tree().quit()
