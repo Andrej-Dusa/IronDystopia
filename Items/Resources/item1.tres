@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BaseItem" load_steps=3 format=3 uid="uid://b6u1jw4ecj3wr"]
+
+[ext_resource type="Texture2D" uid="uid://svy3hni3dk50" path="res://assets/Objects/1 Icons/Icon30_08.png" id="1_ndlov"]
+[ext_resource type="Script" path="res://Items/Scripts/BaseItem_data.gd" id="2_nkorx"]
+
+[resource]
+script = ExtResource("2_nkorx")
+data_type = 0
+item_type = 2
+item_texture = ExtResource("1_ndlov")
+item_name = "Cloak of nothingness"
+stackable = false
+count = 1
+item_description = "Put on to be cool af 
++ 50 coolness"
