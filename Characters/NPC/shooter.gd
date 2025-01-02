@@ -18,6 +18,7 @@ func load_stats(character_stats: BaseStats) -> void:
 func _ready() -> void:
 	load_stats(stats)
 	player = get_parent().find_child("Player")
+	$CharacterBody2D/AnimatedSprite2D.play("default")
 	
 func _physics_process(delta: float) -> void:
 	_aim()
