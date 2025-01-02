@@ -10,6 +10,9 @@ var items = {
 func _ready() -> void:
 	if not has_node("GUI"):
 		print("Error: Node 'GUI' not found in the scene tree.")
+	else:
+		var node = $"GUI"
+		node.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
