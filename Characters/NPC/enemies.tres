@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_u52e4")
 character_type = "Character type"
-max_health = 20
+max_health = 10
 damage = 1
 max_movement_speed = 0.0
 atack_speed = 2.0

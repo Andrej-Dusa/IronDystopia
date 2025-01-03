@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://bv81tgfiusbjd"]
+
+[ext_resource type="Script" path="res://Characters/NPC/randomer.gd" id="1_it5kl"]
+[ext_resource type="Resource" uid="uid://bjgmrsybivoak" path="res://Characters/NPC/enemies.tres" id="2_mp6gr"]
+[ext_resource type="Texture2D" uid="uid://d1tud6teyr1d5" path="res://assets/Characters/NPC/animals/spider/Idle.png" id="3_nso2q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p545r"]
+atlas = ExtResource("3_nso2q")
+region = Rect2(6, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uunxh"]
+atlas = ExtResource("3_nso2q")
+region = Rect2(38, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i8ss"]
+atlas = ExtResource("3_nso2q")
+region = Rect2(70, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iv8o6"]
+atlas = ExtResource("3_nso2q")
+region = Rect2(102, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3jbmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p545r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uunxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i8ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iv8o6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e73ai"]
+radius = 12.0
+height = 24.0
+
+[node name="Randomer" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 27
+script = ExtResource("1_it5kl")
+stats = ExtResource("2_mp6gr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3jbmt")
+frame_progress = 0.910688
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="waiting" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="moving_duration" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3.5)
+shape = SubResource("CapsuleShape2D_e73ai")
+
+[connection signal="timeout" from="waiting" to="." method="_on_waiting_timeout"]
+[connection signal="timeout" from="moving_duration" to="." method="_on_moving_duration_timeout"]

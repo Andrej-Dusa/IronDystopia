@@ -13,6 +13,8 @@ var player
 func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats.duplicate() as BaseStats
 	stats.atack_speed = 2
+	stats.attack_range = 1.5
+	stats.projectile_speed = 400
 	stats.damage = 1
 
 func _ready() -> void:
@@ -38,7 +40,7 @@ func _process_collision():
 			timer.start(0.5)
 			first_shot = false
 		else:
-			timer.start(stats.attack_speed)
+			timer.start(stats.atack_speed)
 	elif (ray_cast.get_collider() != player or (distance_to_player > projectile_distance)) and not timer.is_stopped():
 		print("cant shoot")
 		timer.stop()
