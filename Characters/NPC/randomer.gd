@@ -40,7 +40,7 @@ func behave(delta: float) -> void:
 		if !counted :
 			velocity += (player.position - position)
 			velocity.normalized()
-			print("Velocity player:", velocity)
+			#print("Velocity player:", velocity)
 			velocity *= (stats.max_movement_speed * delta)
 			velocity = velocity.limit_length(stats.max_movement_speed)
 			counted = true
@@ -48,7 +48,7 @@ func behave(delta: float) -> void:
 		if !counted :
 			velocity = get_random_unit_vector_2d()
 			velocity.normalized()
-			print("Velocity with no player:", velocity)
+			#print("Velocity with no player:", velocity)
 			velocity *= (stats.max_movement_speed)
 			velocity = velocity.limit_length(stats.max_movement_speed)
 			counted = true
@@ -64,18 +64,18 @@ func _process_collision():
 	counted = false
 	
 	if ray_cast.get_collider() == player and (distance_to_player < stats.attack_range):
-		print("Spider can move to player")	
+		#print("Spider can move to player")	
 		player_behaviour = true
 		duration.start(0.7)
 	elif (ray_cast.get_collider() != player or (distance_to_player > stats.attack_range)):
-		print("Spider cant move to player")
+		#print("Spider cant move to player")
 		player_behaviour = false
 		duration.start(0.7)
 	
 	move = true
 
 func _on_waiting_timeout() -> void:
-	print("waiting is over")
+	#print("waiting is over")
 	_process_collision()
 	
 func _on_moving_duration_timeout() -> void:

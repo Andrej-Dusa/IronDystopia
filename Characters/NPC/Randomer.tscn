@@ -52,7 +52,7 @@ stats = ExtResource("2_mp6gr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3jbmt")
-frame_progress = 0.910688
+frame_progress = 0.801308
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 
