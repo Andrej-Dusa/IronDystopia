@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var game = get_tree().get_root().get_node("GameTest")
 @onready var projectile = load("res://Game/Projectile.tscn")
 
+@export var inventory = []
+
 func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats
 
@@ -71,3 +73,11 @@ func _shoot() :
 		instance.damage = stats.damage
 		game.add_child.call_deferred(instance)
 		attackSpeed.start(stats.atack_speed)
+
+func add_to_inventory(item):
+	if item:  # Ensure item is valid
+		inventory.append(item)
+		get_parent().get_child(4).get_child(0).add_item(item.item_name)
+		print("Picked up:", item.item_name)
+		return true
+	return false

@@ -1,15 +1,15 @@
 extends PanelContainer
 class_name InventorySlot
 
-@export var dataType: Globals.ItemDataType
+@export var dataType: Enums.ItemDataType
 
-func init(t: Globals.ItemDataType, cms:Vector2) -> void:
+func init(t: Enums.ItemDataType, cms:Vector2) -> void:
 	dataType = t
 	custom_minimum_size = cms
 		
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is InventoryItem:
-		if dataType == Globals.ItemDataType.MAIN:
+		if dataType == Enums.ItemDataType.MAIN:
 			if get_child_count() == 0:
 				return true
 			else:
@@ -35,7 +35,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if (event.button_index == 2) and (event.button_mask == 0):
 			if get_child_count() > 0:
-				if (get_child(0).data.dataType == Globals.ItemDataType.MISC):
+				if (get_child(0).data.dataType == Enums.ItemDataType.MISC):
 					get_child(0).data.count -= 1
 					get_child(0).get_child(0).text = str(get_child(0).data.count)
 					if get_child(0).data.count <= 0:

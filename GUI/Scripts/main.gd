@@ -4,11 +4,11 @@ extends Control
 @onready var grid = get_node("InventoryGrid")
 
 func _ready() -> void:
-	for i in inventorySize:
+	for i in range(inventorySize):
 		var slot := InventorySlot.new()
-		slot.init(Globals.ItemDataType.MAIN, Vector2(32, 32))
+		slot.init(Enums.ItemDataType.MAIN, Vector2(32, 32))
 		grid.add_child(slot)
-	add_item("cloak")
+
 
 func add_item(item_name: String) -> void:
 	var item := InventoryItem.new()

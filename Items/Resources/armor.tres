@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Equipable" load_steps=3 format=3 uid="uid://51cuurnjgtur"]
+
+[ext_resource type="Script" path="res://Items/Scripts/Equipment_data.gd" id="1_n6d8q"]
+[ext_resource type="Texture2D" uid="uid://djckwkqn5jx74" path="res://assets/Objects/1 Icons/Icon10_11.png" id="1_tb3df"]
+
+[resource]
+script = ExtResource("1_n6d8q")
+health = 10
+damage = 0
+movement_speed = 0
+atack_speed = 0
+projectile_speed = 0
+luck = 0
+range = 0
+data_type = 0
+item_type = 1
+item_texture = ExtResource("1_tb3df")
+item_name = "Armor"
+stackable = false
+count = 0
+item_description = ""
