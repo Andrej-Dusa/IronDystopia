@@ -2,14 +2,6 @@ extends Node2D
 
 #@onready var open_menu = preload("res://Menus/MainMenu.tscn") as PackedScene
 
-var items = {
-	"Boots": preload("res://Items/Resources/boots.tres"),
-	"Head": preload("res://Items/Resources/helmet.tres"),
-	"Armor": preload("res://Items/Resources/armor.tres"),
-	"Weapon": preload("res://Items/Resources/weapon.tres"),
-	"Trinket": preload("res://Items/Resources/trinket.tres"),
-	"Consumable": preload("res://Items/Resources/consumable.tres")
-}
 var item_drop_scene = preload("res://Items/ItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -51,7 +43,7 @@ func spawn_item(position):
 	item_instance.item_name = itemName
 	item_instance.item_data = rarityGen(res)
 	item_instance.item_data.item_name = itemName
-	items[itemName] = item_instance.item_data
+	Enums.items[itemName] = item_instance.item_data
 	get_parent().add_child.call_deferred(item_instance)
 	
 func chooseItemToSpawn():
@@ -80,7 +72,7 @@ func buildItemName(item):
 
 func rarityGen(resource):
 	var rarity
-	var res = resource.duplicate()
+	var res = resource.duplicate(true)
 	var keys = Enums.rarity.keys()
 	var rarityModMin
 	var rarityModMax

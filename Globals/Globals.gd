@@ -24,3 +24,5 @@ enum Rarity {NORMAL, RARE, LEGENDARY}
 "boots": 10,
 "trinket": 10,
 "consumable": 50 }
+
+@export var items = {}

@@ -77,7 +77,7 @@ func _shoot() :
 func add_to_inventory(item):
 	if item:  # Ensure item is valid
 		inventory.append(item)
-		get_parent().get_child(4).get_child(0).add_item(item.item_name)
+		get_parent().get_child(3).get_child(0).add_item(item.item_name)
 		print("Picked up:", item.item_name)
 		return true
 	return false

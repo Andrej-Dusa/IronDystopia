@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func add_item(item_name: String) -> void:
 	var item := InventoryItem.new()
-	item.init(GameTest.items[item_name])
+	item.init(Enums.items[item_name])
 	if item.data.stackable:
 		pass
 		for i in inventorySize:
