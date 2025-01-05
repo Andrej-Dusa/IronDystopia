@@ -67,11 +67,14 @@ func _apply_movement(acceleration) :
 func _shoot() :
 	if attackSpeed.is_stopped():
 		var instance = projectile.instantiate()
+		instance.is_player_projectile = true
 		instance.dir = lookingDir
 		instance.spawnPos = global_position
 		instance.spawnRot = rotation
 		instance.zdex = z_index - 1
 		instance.damage = stats.damage
+		instance.speed = stats.projectile_speed
+		instance.range = stats.attack_range
 		game.add_child.call_deferred(instance)
 		attackSpeed.start(stats.atack_speed)
 

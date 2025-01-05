@@ -1,0 +1,85 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwdaxvy8u6jt8"]
+
+[ext_resource type="Script" path="res://Characters/NPC/bouncer.gd" id="1_gdpqk"]
+[ext_resource type="Script" path="res://Resources/BaseStats.gd" id="2_ijku1"]
+[ext_resource type="Texture2D" uid="uid://c1y1gc7e0jnfu" path="res://assets/Characters/NPC/animals/bat/Blue_Flying.png" id="2_pilmg"]
+
+[sub_resource type="Resource" id="Resource_sog04"]
+script = ExtResource("2_ijku1")
+character_type = "Character type"
+max_health = 10
+damage = 1
+max_movement_speed = 400.0
+atack_speed = 0.0
+projectile_speed = 0
+attack_range = 0.0
+luck = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdfts"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4tlq"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnowo"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d54jj"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ofbku"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvhvj"]
+atlas = ExtResource("2_pilmg")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1sawc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdfts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4tlq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnowo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d54jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ofbku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvhvj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0e8b"]
+radius = 14.0
+height = 28.0
+
+[node name="Bouncer" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 19
+script = ExtResource("1_gdpqk")
+stats = SubResource("Resource_sog04")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1sawc")
+frame_progress = 0.605548
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1)
+shape = SubResource("CapsuleShape2D_t0e8b")
