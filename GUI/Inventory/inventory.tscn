@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cual7uu2xndab"]
+[gd_scene load_steps=3 format=3 uid="uid://cual7uu2xndab"]
 
 [ext_resource type="Script" path="res://GUI/Scripts/main.gd" id="1_v71rd"]
+[ext_resource type="Script" path="res://GUI/Scripts/equip_slot.gd" id="2_i0hoq"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -13,13 +14,127 @@ script = ExtResource("1_v71rd")
 layout_mode = 0
 offset_left = 64.0
 offset_top = 64.0
-offset_right = 768.0
+offset_right = 960.0
 offset_bottom = 512.0
 
 [node name="InventoryGrid" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 128.0
-offset_top = 128.0
-offset_right = 704.0
-offset_bottom = 448.0
-columns = 6
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 512.0
+offset_bottom = 496.0
+columns = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+offset_left = 704.0
+offset_top = 136.0
+offset_right = 904.0
+offset_bottom = 424.0
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HelmetLabel" type="Label" parent="VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Helmet"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+
+[node name="HelmetSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("2_i0hoq")
+dataType = 1
+itemType = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="WeaponLabel" type="Label" parent="VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArmorLabel" type="Label" parent="VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Armor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TrinketLabel" type="Label" parent="VBoxContainer/HBoxContainer5"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Trinket"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+
+[node name="WeaponSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("2_i0hoq")
+dataType = 1
+
+[node name="ArmorSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("2_i0hoq")
+dataType = 1
+itemType = 1
+
+[node name="TrinketSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+script = ExtResource("2_i0hoq")
+dataType = 1
+itemType = 3
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BootsLabel" type="Label" parent="VBoxContainer/HBoxContainer6"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "Boots"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+
+[node name="BootsSlot" type="PanelContainer" parent="VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("2_i0hoq")
+dataType = 1
+itemType = 4

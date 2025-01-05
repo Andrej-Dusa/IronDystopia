@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://clowajphpdycy"
-path="res://.godot/imported/Icon10_35.png-45221f41a59f0275addd52e5757f3f2c.ctex"
+uid="uid://cw4vytjcjdq8m"
+path="res://.godot/imported/trinketLEGENDARY.png-caa2f15a681a88a661099c8059124a6c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Objects/1 Icons/Icon10_35.png"
-dest_files=["res://.godot/imported/Icon10_35.png-45221f41a59f0275addd52e5757f3f2c.ctex"]
+source_file="res://assets/Objects/1 Icons/trinketLEGENDARY.png"
+dest_files=["res://.godot/imported/trinketLEGENDARY.png-caa2f15a681a88a661099c8059124a6c.ctex"]
 
 [params]
 

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Equipable" load_steps=3 format=3 uid="uid://bj7047rf41dj1"]
+
+[ext_resource type="Script" path="res://Items/Scripts/Equipment_data.gd" id="1_7w0c7"]
+[ext_resource type="Texture2D" uid="uid://c1wykt45t6rxu" path="res://assets/Objects/1 Icons/trinketNORMAL.png" id="1_n8j3b"]
+
+[resource]
+script = ExtResource("1_7w0c7")
+health = 1
+damage = 1
+movement_speed = 1
+atack_speed = 1
+projectile_speed = 1
+luck = 1
+range = 1
+data_type = 1
+item_type = 3
+rarity = 0
+item_texture = ExtResource("1_n8j3b")
+item_name = "Trinket"
+stackable = false
+count = 0
+item_description = ""

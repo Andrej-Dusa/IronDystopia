@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	behave(delta)
 	move_and_slide()
 
-
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	print("Body entered:", body)
 	print("Body type:", body.get_class())

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=3 format=3 uid="uid://d1bgn07pf6nla"]
+
+[ext_resource type="Texture2D" uid="uid://ciu2q0xujj6rv" path="res://assets/Objects/1 Icons/consumableNORMAL.png" id="1_mopi0"]
+[ext_resource type="Script" path="res://Items/Scripts/Consumable_data.gd" id="1_vgos0"]
+
+[resource]
+script = ExtResource("1_vgos0")
+healing = 1
+exp = 0
+special = 0
+data_type = 0
+item_type = 5
+item_texture = ExtResource("1_mopi0")
+item_name = "Consumable"
+stackable = true
+count = 0
+item_description = ""

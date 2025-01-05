@@ -3,10 +3,11 @@
 [ext_resource type="Script" path="res://Game/game_test.gd" id="1_io1t5"]
 [ext_resource type="PackedScene" uid="uid://b5e8novmva7hs" path="res://Characters/Player.tscn" id="1_n4ajl"]
 [ext_resource type="Texture2D" uid="uid://clar5dtlsogta" path="res://assets/test_wall_set.png" id="3_0sg00"]
-[ext_resource type="PackedScene" uid="uid://gwojmgooskqk" path="res://GUI/gui.tscn" id="5_atfdh"]
-[ext_resource type="PackedScene" uid="uid://bv81tgfiusbjd" path="res://Characters/NPC/Randomer.tscn" id="6_dxtei"]
-[ext_resource type="PackedScene" uid="uid://da70b23pkx1fb" path="res://Characters/NPC/Shooter.tscn" id="6_tt5mj"]
-[ext_resource type="PackedScene" uid="uid://cwdaxvy8u6jt8" path="res://Characters/NPC/Bouncer.tscn" id="7_tr51c"]
+[ext_resource type="PackedScene" uid="uid://d1tnj4iq1rqsw" path="res://Characters/NPC/Enemy.tscn" id="4_yr8m8"]
+[ext_resource type="PackedScene" uid="uid://bu1hqyj5jq3r2" path="res://GUI/gui.tscn" id="5_4rc8g"]
+[ext_resource type="PackedScene" uid="uid://djmlyj1bja2ao" path="res://Items/ItemDrop.tscn" id="6_34eub"]
+[ext_resource type="Resource" uid="uid://b6u1jw4ecj3wr" path="res://Items/Resources/item1.tres" id="7_cb00j"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dvub6"]
 texture = ExtResource("3_0sg00")
 texture_region_size = Vector2i(64, 64)
@@ -58,13 +59,12 @@ position = Vector2(513, 287)
 tile_map_data = PackedByteArray("AAAAAAAAAAAEAAAAAAAAAAEAAAAIAAAAAAAAAAIAAAAIAAAAAAAAAAMAAAAIAAAAAAAAAAQAAAAIAAAAAAAAAAUAAAAIAAAAAAAAAAYAAAAIAAAAAAAAAAcAAAAIAAAAAAAAAAgAAAADAAAAAAABAAAAAAAFAAAAAAABAAgAAAAGAAAAAAACAAAAAAAFAAAAAAACAAgAAAAGAAAAAAADAAAAAAAFAAAAAAADAAgAAAAGAAAAAAAEAAAAAAAFAAAAAAAEAAgAAAAGAAAAAAAFAAAAAAAFAAAAAAAFAAgAAAAGAAAAAAAGAAAAAAAFAAAAAAAGAAgAAAAGAAAAAAAHAAAAAAAFAAAAAAAHAAgAAAAGAAAAAAAIAAAAAAAFAAAAAAAIAAgAAAAGAAAAAAAJAAAAAAAFAAAAAAAJAAgAAAAGAAAAAAAKAAAAAAAFAAAAAAAKAAgAAAAGAAAAAAALAAAAAAAFAAAAAAALAAgAAAAGAAAAAAAMAAAAAAAFAAAAAAAMAAgAAAAGAAAAAAANAAAAAAAFAAAAAAANAAgAAAAGAAAAAAAOAAAAAAAFAAAAAAAOAAgAAAAGAAAAAAAPAAAAAAABAAAAAAAPAAEAAAAHAAAAAAAPAAIAAAAHAAAAAAAPAAMAAAAHAAAAAAAPAAQAAAAHAAAAAAAPAAUAAAAHAAAAAAAPAAYAAAAHAAAAAAAPAAcAAAAHAAAAAAAPAAgAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_xul0p")
 
-[node name="GUI" parent="." instance=ExtResource("5_atfdh")]
+[node name="Enemy" parent="." instance=ExtResource("4_yr8m8")]
+position = Vector2(191, 202)
 
-[node name="Shooter" parent="." instance=ExtResource("6_tt5mj")]
-position = Vector2(825, 152)
+[node name="GUI" parent="." instance=ExtResource("5_4rc8g")]
 
-[node name="Randomer" parent="." instance=ExtResource("6_dxtei")]
-position = Vector2(882, 432)
-
-[node name="Bouncer" parent="." instance=ExtResource("7_tr51c")]
-position = Vector2(586, 383)
+[node name="ItemDrop" parent="." instance=ExtResource("6_34eub")]
+position = Vector2(288, 368)
+item_name = "something"
+item_data = ExtResource("7_cb00j")

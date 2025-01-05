@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Equipable" load_steps=3 format=3 uid="uid://dep6mtqcbkbt3"]
+
+[ext_resource type="Script" path="res://Items/Scripts/Equipment_data.gd" id="1_38utg"]
+[ext_resource type="Texture2D" uid="uid://6w6gekbfpsob" path="res://assets/Objects/1 Icons/weaponNORMAL.png" id="1_b062k"]
+
+[resource]
+script = ExtResource("1_38utg")
+health = 0
+damage = 5
+movement_speed = 0
+atack_speed = 10
+projectile_speed = 1
+luck = 0
+range = 1
+data_type = 1
+item_type = 0
+rarity = 0
+item_texture = ExtResource("1_b062k")
+item_name = "Weapon"
+stackable = false
+count = 0
+item_description = ""

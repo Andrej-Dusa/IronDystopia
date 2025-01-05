@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var FRICTION = 950
 @export var PROJECTILE_CURVE = 0.3
 
-@export var stats : BaseStats
+@export var stats : Resource
 
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
@@ -12,11 +12,14 @@ extends CharacterBody2D
 @onready var game = get_tree().get_root().get_node("GameTest")
 @onready var projectile = load("res://Game/Projectile.tscn")
 
-func load_stats(character_stats: BaseStats) -> void:
-	stats = character_stats
+@export var inventory = []
+
+func load_stats() -> void:
+	var defaultStats = load("res://Characters/PlayerStats.tres")
+	stats = defaultStats.duplicate(true)
 
 func _ready() :
-	load_stats(stats)
+	load_stats()
 		
 func _physics_process(delta: float) -> void:
 	_move(delta)
@@ -74,3 +77,30 @@ func _shoot() :
 		instance.range = stats.attack_range
 		game.add_child.call_deferred(instance)
 		attackSpeed.start(stats.atack_speed)
+
+func add_to_inventory(item):
+	if item:  # Ensure item is valid
+		inventory.append(item)
+		get_parent().get_child(3).get_child(0).add_item(item.item_name)
+		print("Picked up:", item.item_name)
+		return true
+	return false
+
+func stat_change(item, data):
+	if item != null:
+		stats.max_health -= item.data.health
+		stats.damage -= item.data.damage
+		stats.atack_speed -= item.data.atack_speed
+		stats.attack_range -=item.data.range
+		stats.max_movement_speed -= item.data.movement_speed
+		stats.luck -= item.data.luck
+		stats.projectile_speed -= item.data.projectile_speed
+		
+	if data != null:
+		stats.max_health += data.data.health
+		stats.damage += data.data.damage
+		stats.atack_speed += data.data.atack_speed
+		stats.attack_range += data.data.range
+		stats.max_movement_speed += data.data.movement_speed
+		stats.luck += data.data.luck
+		stats.projectile_speed += data.data.projectile_speed

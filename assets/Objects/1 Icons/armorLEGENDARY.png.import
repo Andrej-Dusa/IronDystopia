@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ww3d6v1oel77"
-path="res://.godot/imported/Icon14_17.png-76f1ebfc30f3ee213ca896f4252457d7.ctex"
+uid="uid://0t0rffolfkbn"
+path="res://.godot/imported/armorLEGENDARY.png-2d6a8d9d54ee2f21bdfccada81c7909f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Objects/1 Icons/Icon14_17.png"
-dest_files=["res://.godot/imported/Icon14_17.png-76f1ebfc30f3ee213ca896f4252457d7.ctex"]
+source_file="res://assets/Objects/1 Icons/armorLEGENDARY.png"
+dest_files=["res://.godot/imported/armorLEGENDARY.png-2d6a8d9d54ee2f21bdfccada81c7909f.ctex"]
 
 [params]
 

@@ -1,18 +1,18 @@
 extends Control
 
-@export var inventorySize = 24
+@export var inventorySize = 42
 @onready var grid = get_node("InventoryGrid")
 
 func _ready() -> void:
-	for i in inventorySize:
+	for i in range(inventorySize):
 		var slot := InventorySlot.new()
-		slot.init(Globals.ItemDataType.MAIN, Vector2(32, 32))
+		slot.init(Enums.ItemDataType.MAIN, Vector2(64, 64))
 		grid.add_child(slot)
-	add_item("cloak")
+
 
 func add_item(item_name: String) -> void:
 	var item := InventoryItem.new()
-	item.init(GameTest.items[item_name])
+	item.init(Enums.items[item_name])
 	if item.data.stackable:
 		pass
 		for i in inventorySize:
