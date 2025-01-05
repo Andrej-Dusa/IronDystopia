@@ -41,7 +41,7 @@ func spawn_item(position):
 	var item_instance = item_drop_scene.instantiate()
 	item_instance.position = position
 	item_instance.item_name = itemName
-	item_instance.item_data = rarityGen(res)
+	item_instance.item_data = rarityGen(res, itemToSpawn)
 	item_instance.item_data.item_name = itemName
 	Enums.items[itemName] = item_instance.item_data
 	get_parent().add_child.call_deferred(item_instance)
@@ -70,9 +70,11 @@ func buildItemName(item):
 	var itemName = itemNameFormat % [prefix, item, sufix]
 	return itemName
 
-func rarityGen(resource):
+func rarityGen(resource, itemToSpawn):
 	var rarity
 	var res = resource.duplicate(true)
+	if itemToSpawn != "consumable":
+		res.data_type = Enums.ItemDataType.MAIN
 	var keys = Enums.rarity.keys()
 	var rarityModMin
 	var rarityModMax
@@ -94,9 +96,15 @@ func rarityGen(resource):
 		# Ensure the property is writable and numeric
 		if res.has_method("set") and property.type in [TYPE_INT, TYPE_FLOAT]:
 			var current_value = res.get(name)
-			res.set(name, current_value * mod)
+			if name not in ["data_type", "item_type", "rarity"]:
+				res.set(name, current_value * mod)
 			if current_value > 0:
 				var stringFormat = "+%d %s\n"
 				var string = stringFormat % [current_value, name]
 				res.item_description += string
+	var stringBuilder = "res://assets/Objects/1 Icons/%s%s.png"
+	var string = stringBuilder % [itemToSpawn, str(rarity)]
+	res.item_texture = load(string)
+	res.item_description += "\n"
+	res.item_description += str(rarity)
 	return res

@@ -1,15 +1,20 @@
 extends PanelContainer
-class_name InventorySlot
+class_name EquipSlot
 
 @export var dataType: Enums.ItemDataType
+@export var itemType: Enums.ItemType
 
-func init(t: Enums.ItemDataType, cms:Vector2) -> void:
+func _ready():
+	self.connect("child_exited", Callable(self, "_on_child_exited"))
+
+func init(t: Enums.ItemDataType, t2: Enums.ItemType, cms:Vector2) -> void:
 	dataType = t
+	itemType = t2
 	custom_minimum_size = cms
 		
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	if data is InventoryItem:
-		if dataType == Enums.ItemDataType.MAIN:
+		if dataType == Enums.ItemDataType.MAIN && itemType == data.data.item_type:
 			if get_child_count() == 0:
 				return true
 			else:
@@ -20,21 +25,20 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 			return data.data.data_type == dataType
 	return false
 	
-	
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var child = get_parent().get_parent().get_parent().get_parent().get_child(0)
-	var dataParent = data.get_parent()
 	if get_child_count() > 0:
 		var item := get_child(0)
 		if item == data:
 			return
-		if dataParent is EquipSlot:
-			child.stat_change(data, item)
 		item.reparent(data.get_parent())
-	elif dataParent is EquipSlot:
-		child.stat_change(data, null)
+		get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(item, data)
+	else:
+		get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(null, data)
 	data.reparent(self)
 	
+	
+func _on_child_exited(child: Node) -> void:
+	get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(child, null)
 	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var FRICTION = 950
 @export var PROJECTILE_CURVE = 0.3
 
-@export var stats : BaseStats
+@export var stats : Resource
 
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
@@ -14,11 +14,12 @@ extends CharacterBody2D
 
 @export var inventory = []
 
-func load_stats(character_stats: BaseStats) -> void:
-	stats = character_stats
+func load_stats() -> void:
+	var defaultStats = load("res://Characters/PlayerStats.tres")
+	stats = defaultStats.duplicate(true)
 
 func _ready() :
-	load_stats(stats)
+	load_stats()
 		
 func _physics_process(delta: float) -> void:
 	_move(delta)
@@ -81,3 +82,21 @@ func add_to_inventory(item):
 		print("Picked up:", item.item_name)
 		return true
 	return false
+
+func stat_change(item, data):
+	if item != null:
+		stats.max_health -= item.data.health
+		stats.damage -= item.data.damage
+		stats.atack_speed -= item.data.atack_speed
+		stats.attack_range -=item.data.range
+		stats.max_movement_speed -= item.data.movement_speed
+		stats.luck -= item.data.luck
+		stats.projectile_speed -= item.data.projectile_speed
+	if data != null:
+		stats.max_health += data.data.health
+		stats.damage += data.data.damage
+		stats.atack_speed += data.data.atack_speed
+		stats.attack_range += data.data.range
+		stats.max_movement_speed += data.data.movement_speed
+		stats.luck += data.data.luck
+		stats.projectile_speed += data.data.projectile_speed

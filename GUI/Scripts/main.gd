@@ -1,12 +1,12 @@
 extends Control
 
-@export var inventorySize = 24
+@export var inventorySize = 42
 @onready var grid = get_node("InventoryGrid")
 
 func _ready() -> void:
 	for i in range(inventorySize):
 		var slot := InventorySlot.new()
-		slot.init(Enums.ItemDataType.MAIN, Vector2(32, 32))
+		slot.init(Enums.ItemDataType.MAIN, Vector2(64, 64))
 		grid.add_child(slot)
 
 

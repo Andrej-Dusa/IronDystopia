@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0t0rffolfkbn"
-path="res://.godot/imported/Icon10_14.png-00f97f59f92fa30b685ca55d1a88515f.ctex"
+uid="uid://csuo4b4tpeqgu"
+path="res://.godot/imported/bootsLEGENDARY.png-9502f4fc8c8d75f982920dcdda742233.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Objects/1 Icons/Icon10_14.png"
-dest_files=["res://.godot/imported/Icon10_14.png-00f97f59f92fa30b685ca55d1a88515f.ctex"]
+source_file="res://assets/Objects/1 Icons/bootsLEGENDARY.png"
+dest_files=["res://.godot/imported/bootsLEGENDARY.png-9502f4fc8c8d75f982920dcdda742233.ctex"]
 
 [params]
 
