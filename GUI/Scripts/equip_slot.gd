@@ -4,9 +4,6 @@ class_name EquipSlot
 @export var dataType: Enums.ItemDataType
 @export var itemType: Enums.ItemType
 
-func _ready():
-	self.connect("child_exited", Callable(self, "_on_child_exited"))
-
 func init(t: Enums.ItemDataType, t2: Enums.ItemType, cms:Vector2) -> void:
 	dataType = t
 	itemType = t2
@@ -35,10 +32,6 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 	else:
 		get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(null, data)
 	data.reparent(self)
-	
-	
-func _on_child_exited(child: Node) -> void:
-	get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(child, null)
 	
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

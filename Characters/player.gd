@@ -92,6 +92,7 @@ func stat_change(item, data):
 		stats.max_movement_speed -= item.data.movement_speed
 		stats.luck -= item.data.luck
 		stats.projectile_speed -= item.data.projectile_speed
+		
 	if data != null:
 		stats.max_health += data.data.health
 		stats.damage += data.data.damage
