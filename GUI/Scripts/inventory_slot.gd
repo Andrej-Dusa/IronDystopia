@@ -40,8 +40,10 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if (event.button_index == 2) and (event.button_mask == 0):
 			if get_child_count() > 0:
-				if (get_child(0).data.dataType == Enums.ItemDataType.MISC):
+				if (get_child(0).data.data_type == Enums.ItemDataType.MISC):
 					get_child(0).data.count -= 1
 					get_child(0).get_child(0).text = str(get_child(0).data.count)
 					if get_child(0).data.count <= 0:
 						get_child(0).queue_free()
+				elif get_child(0).data.data_type == Enums.ItemDataType.MAIN:
+					get_child(0).queue_free()
