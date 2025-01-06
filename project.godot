@@ -19,7 +19,6 @@ config/windows_native_icon="res://assets/game_icon.ico"
 [autoload]
 
 Enums="*res://Globals/Globals.gd"
-GameTest="*res://Game/game_test.gd"
 
 [display]
 

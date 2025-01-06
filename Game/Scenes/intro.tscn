@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://cs74wu6axce6l"]
+
+[ext_resource type="Script" path="res://Game/Scripts/intro.gd" id="1_p3d1r"]
+[ext_resource type="Texture2D" uid="uid://c0nd1p0y7bj6t" path="res://assets/Intro/experiment.png" id="2_bwgc7"]
+[ext_resource type="Texture2D" uid="uid://dy604u33cen7h" path="res://assets/Intro/earth.png" id="3_gxp6k"]
+[ext_resource type="Texture2D" uid="uid://blxolx6se125y" path="res://assets/Intro/wasteland.png" id="4_00oy7"]
+[ext_resource type="Texture2D" uid="uid://dc561uekt08yr" path="res://assets/Intro/shaft.png" id="5_ms8ij"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhpf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 3.0,
+"texture": null
+}, {
+"duration": 5.0,
+"texture": ExtResource("2_bwgc7")
+}, {
+"duration": 5.0,
+"texture": ExtResource("3_gxp6k")
+}, {
+"duration": 5.0,
+"texture": ExtResource("4_00oy7")
+}, {
+"duration": 5.0,
+"texture": ExtResource("5_ms8ij")
+}],
+"loop": false,
+"name": &"intro",
+"speed": 1.0
+}]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_p3d1r")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(512, 288)
+scale = Vector2(0.5625, 0.5625)
+sprite_frames = SubResource("SpriteFrames_rhpf4")
+animation = &"intro"
+frame = 1
+frame_progress = 0.86792
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 96.0
+offset_top = 128.0
+offset_right = 968.0
+offset_bottom = 448.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+offset_left = 40.0
+offset_top = 16.0
+offset_right = 848.0
+offset_bottom = 312.0
+text = "As the resources were running low scientists started to experiment with new forms of materials and nanotechnology. In the year 2542 one particular experiment went terribly wrong and unleashed aggressive nano-substance now known as Iron plague. This substance can replicate itself and its livecycle is dependent on binding to iron in any given form. Because of this possibility it can bind itself even to living beings, creating terrifying results as it completely takes over the host. Creatures controlled by Iron plague are murderous, deadly and can spread the influence of this parasitic substance further and further. In less than 5 months it spreaded all around the globe and casualties were uncountable. Nearly every infrastructure was hit and society as we know it ceased to exist. Now, 7 years after initial events, the last remaining survivors fight for their survival as the spread suddenly stopped and all plague affected creatures started to gather at certain locations. You will assume the role of a young scientist that embarks on a journey to discover what is going on and find the way to erase the plague from existence."
+scroll_active = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://djop8nohy6vgi"]
+
+[ext_resource type="Script" path="res://Game/Scripts/spawn.gd" id="1_qhrnc"]
+
+[node name="spawn" type="Node2D"]
+script = ExtResource("1_qhrnc")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(32, -16)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(-32, 32)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(48, 24)

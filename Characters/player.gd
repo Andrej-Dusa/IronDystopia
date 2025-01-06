@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var lookingDir = Vector2(0,1)
 @onready var attackSpeed = $AttackSpeed
 @onready var game = get_tree().get_root().get_node("GameTest")
-@onready var projectile = load("res://Game/Projectile.tscn")
+@onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 
 @export var inventory = []
 

@@ -24,3 +24,7 @@ enum Rarity {NORMAL, RARE, LEGENDARY}
 "consumable": 50 }
 
 @export var items = {}
+
+var level_layout = {}  #stores level instances
+
+var player_instance = null

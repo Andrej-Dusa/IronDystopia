@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqymeo8yflayh"]
+
+[ext_resource type="Script" path="res://Game/Scripts/dungeon.gd" id="1_0mfkf"]
+[ext_resource type="Script" path="res://Game/Scripts/level.gd" id="1_ptexg"]
+[ext_resource type="Script" path="res://Game/Scripts/room_transition_controller.gd" id="2_fknww"]
+[ext_resource type="Script" path="res://Game/Scripts/level_transition_controller.gd" id="3_qb64q"]
+[ext_resource type="PackedScene" uid="uid://bu1hqyj5jq3r2" path="res://GUI/gui.tscn" id="4_fxvmt"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_0mfkf")
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource("1_ptexg")
+
+[node name="RoomTransitionController" type="Node2D" parent="Level"]
+script = ExtResource("2_fknww")
+
+[node name="RoomContainer" type="Node2D" parent="Level"]
+
+[node name="LevelTransitionController" type="Node2D" parent="."]
+script = ExtResource("3_qb64q")
+
+[node name="PlayerContainer" type="Node2D" parent="."]
+
+[node name="GUI" parent="." instance=ExtResource("4_fxvmt")]
