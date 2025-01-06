@@ -48,13 +48,17 @@ func behave(delta: float) -> void:
 		if !counted :
 			velocity = get_random_unit_vector_2d()
 			velocity.normalized()
-			#print("Velocity with no player:", velocity)
 			velocity *= (stats.max_movement_speed)
 			velocity = velocity.limit_length(stats.max_movement_speed)
 			counted = true
 	else :
 		velocity = Vector2(0,0)
-		
+	
+	if velocity.x < 0 :
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0 :
+		$AnimatedSprite2D.flip_h = false
+
 func get_random_unit_vector_2d() -> Vector2:
 	var angle = randf() * TAU
 	return Vector2(cos(angle), sin(angle))

@@ -1,25 +1,118 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5e8novmva7hs"]
+[gd_scene load_steps=27 format=3 uid="uid://b5e8novmva7hs"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_3f66t"]
-[ext_resource type="Texture2D" uid="uid://ktbmffia2a3v" path="res://assets/testing_dummy.png" id="1_4goes"]
 [ext_resource type="Resource" uid="uid://jnbop1mqmajl" path="res://Characters/PlayerStats.tres" id="2_txtk3"]
+[ext_resource type="Texture2D" uid="uid://bf8d5bmgtrlid" path="res://assets/Characters/playable/players blue x3.png" id="3_ia0ie"]
+[ext_resource type="Shader" path="res://Characters/flicker_hit.gdshader" id="3_opjby"]
 [ext_resource type="Texture2D" uid="uid://4abawrqef801" path="res://assets/GUI/2 Bars/HealthBar8.png" id="4_a37m6"]
 [ext_resource type="Texture2D" uid="uid://c7ov7pj8jvwei" path="res://assets/GUI/2 Bars/HealthBar4.png" id="5_tc41p"]
 [ext_resource type="Script" path="res://Characters/health_bar.gd" id="6_uy6q3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtnrr"]
-atlas = ExtResource("1_4goes")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhdd4"]
+resource_local_to_scene = true
+shader = ExtResource("3_opjby")
+shader_parameter/hit_opacity = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_085jj"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(0, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wteqv"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(96, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtabv"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(192, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1ou7"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(288, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnmr4"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(384, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2hi1"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(480, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01lhc"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(576, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iws3e"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1wnq"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(0, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2atj3"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(96, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dao6"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(192, 288, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r666v"]
+atlas = ExtResource("3_ia0ie")
+region = Rect2(288, 288, 96, 96)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pl0lk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vtnrr")
+"texture": SubResource("AtlasTexture_085jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wteqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtabv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1ou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnmr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2hi1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01lhc")
+}],
+"loop": true,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iws3e")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1wnq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2atj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dao6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r666v")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okd0v"]
@@ -30,17 +123,58 @@ height = 58.0
 radius = 15.0
 height = 62.0
 
+[sub_resource type="Animation" id="Animation_nr2gr"]
+resource_name = "flash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hgstb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/hit_opacity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hibbu"]
+_data = {
+"RESET": SubResource("Animation_hgstb"),
+"flash": SubResource("Animation_nr2gr")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(0, -31)
-collision_mask = 42
+collision_mask = 34
 script = ExtResource("1_3f66t")
 stats = ExtResource("2_txtk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -1)
+material = SubResource("ShaderMaterial_dhdd4")
+position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_pl0lk")
+animation = &"run"
+frame_progress = 0.853926
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_okd0v")
 
 [node name="AttackSpeed" type="Timer" parent="."]
@@ -64,9 +198,15 @@ script = ExtResource("6_uy6q3")
 metadata/_edit_use_anchors_ = true
 
 [node name="ContactDamageArea" type="Area2D" parent="."]
+position = Vector2(1, 0)
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamageArea"]
 shape = SubResource("CapsuleShape2D_yuefm")
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hibbu")
+}
 
 [connection signal="body_entered" from="ContactDamageArea" to="." method="_on_contact_damage_area_body_entered"]

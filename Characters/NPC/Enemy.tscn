@@ -27,7 +27,7 @@ radius = 545.404
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 19
+collision_mask = 18
 script = ExtResource("1_pqnre")
 stats = ExtResource("2_6s87r")
 

@@ -36,9 +36,11 @@ func _physics_process(delta: float) -> void:
 func _get_looking_dir() :
 	if Input.is_action_pressed("ui_left") :
 		lookingDir = Vector2(-1,0) + axis * PROJECTILE_CURVE
+		$AnimatedSprite2D.flip_h = true
 		_shoot()
 	elif Input.is_action_pressed("ui_right") :
 		lookingDir = Vector2(1,0) + axis * PROJECTILE_CURVE
+		$AnimatedSprite2D.flip_h = false
 		_shoot()
 	elif Input.is_action_pressed("ui_up") :
 		lookingDir = Vector2(0,-1) + axis * PROJECTILE_CURVE
@@ -58,8 +60,10 @@ func _move(delta) :
 
 	if axis == Vector2.ZERO:
 		_apply_friction(FRICTION * delta)
+		$AnimatedSprite2D.play("default")
 	else:
 		_apply_movement(axis * ACCELERATION * delta)
+		$AnimatedSprite2D.play("run")
 	_get_looking_dir()
 	move_and_slide()
 
@@ -128,12 +132,14 @@ func _set_health(value):
 			emit_signal("killed")
 			
 func kill():
+	$AnimatedSprite2D.play("death")
 	print("Player killed")
 	
 func take_damage(amount):
 	if invurnelability.is_stopped():
 		_set_health(currentHealth - amount)
 		print("Player has taken damage", currentHealth)
+		$Effects.play("flash")
 		invurnelability.start()
 
 

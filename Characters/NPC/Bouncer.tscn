@@ -71,7 +71,7 @@ height = 28.0
 
 [node name="Bouncer" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 19
+collision_mask = 18
 script = ExtResource("1_gdpqk")
 stats = SubResource("Resource_sog04")
 
