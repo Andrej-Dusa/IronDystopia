@@ -35,3 +35,19 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player_behaviour = true
 	if (body.collision_layer & (1 << 4)) :
 		print("Player projectile detected")
+
+func get_damage():
+	return stats.damage
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.85:
+		game.spawn_item(position)
+	queue_free()

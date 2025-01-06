@@ -40,31 +40,30 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qebm6"]
-size = Vector2(56, 54)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5j68v"]
+radius = 23.0
+height = 52.0
 
-[node name="Shooter" type="Node2D"]
+[node name="Shooter" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 16
 script = ExtResource("1_86jj6")
 stats = ExtResource("2_eh7tb")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-collision_layer = 8
-collision_mask = 17
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_ftf0b")
 frame = 2
 frame_progress = 0.30439
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-3, 5)
-shape = SubResource("RectangleShape2D_qebm6")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 5)
+shape = SubResource("CapsuleShape2D_5j68v")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

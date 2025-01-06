@@ -48,13 +48,17 @@ func behave(delta: float) -> void:
 		if !counted :
 			velocity = get_random_unit_vector_2d()
 			velocity.normalized()
-			#print("Velocity with no player:", velocity)
 			velocity *= (stats.max_movement_speed)
 			velocity = velocity.limit_length(stats.max_movement_speed)
 			counted = true
 	else :
 		velocity = Vector2(0,0)
-		
+	
+	if velocity.x < 0 :
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0 :
+		$AnimatedSprite2D.flip_h = false
+
 func get_random_unit_vector_2d() -> Vector2:
 	var angle = randf() * TAU
 	return Vector2(cos(angle), sin(angle))
@@ -75,9 +79,24 @@ func _process_collision():
 	move = true
 
 func _on_waiting_timeout() -> void:
-	#print("waiting is over")
 	_process_collision()
 	
 func _on_moving_duration_timeout() -> void:
 	move = false
 	timer.start(stats.atack_speed)
+
+func get_damage():
+	return stats.damage
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.7:
+		game.spawn_item(position)
+	queue_free()

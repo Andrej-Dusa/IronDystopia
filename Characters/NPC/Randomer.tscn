@@ -46,7 +46,7 @@ height = 24.0
 
 [node name="Randomer" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 27
+collision_mask = 26
 script = ExtResource("1_it5kl")
 stats = ExtResource("2_mp6gr")
 
