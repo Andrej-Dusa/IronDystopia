@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5e8novmva7hs"]
+[gd_scene load_steps=11 format=3 uid="uid://b5e8novmva7hs"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_3f66t"]
 [ext_resource type="Texture2D" uid="uid://ktbmffia2a3v" path="res://assets/testing_dummy.png" id="1_4goes"]
 [ext_resource type="Resource" uid="uid://jnbop1mqmajl" path="res://Characters/PlayerStats.tres" id="2_txtk3"]
+[ext_resource type="Texture2D" uid="uid://4abawrqef801" path="res://assets/GUI/2 Bars/HealthBar8.png" id="4_a37m6"]
+[ext_resource type="Texture2D" uid="uid://c7ov7pj8jvwei" path="res://assets/GUI/2 Bars/HealthBar4.png" id="5_tc41p"]
+[ext_resource type="Script" path="res://Characters/health_bar.gd" id="6_uy6q3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vtnrr"]
 atlas = ExtResource("1_4goes")
@@ -20,7 +23,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okd0v"]
-radius = 18.0
+radius = 14.0
+height = 58.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yuefm"]
+radius = 15.0
 height = 62.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -38,3 +45,28 @@ shape = SubResource("CapsuleShape2D_okd0v")
 
 [node name="AttackSpeed" type="Timer" parent="."]
 one_shot = true
+
+[node name="Invurnelability" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="HP" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HP"]
+offset_left = 26.0
+offset_top = 12.0
+offset_right = 219.0
+offset_bottom = 36.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_a37m6")
+texture_progress = ExtResource("5_tc41p")
+script = ExtResource("6_uy6q3")
+metadata/_edit_use_anchors_ = true
+
+[node name="ContactDamageArea" type="Area2D" parent="."]
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContactDamageArea"]
+shape = SubResource("CapsuleShape2D_yuefm")
+
+[connection signal="body_entered" from="ContactDamageArea" to="." method="_on_contact_damage_area_body_entered"]

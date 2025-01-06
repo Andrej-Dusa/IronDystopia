@@ -35,6 +35,14 @@ func _physics_process(delta: float) :
 
 func _on_area_2d_body_entered(body: Node2D) :
 	print("HIT!!!")
+	if (body.collision_layer & (1 << 3) and is_player_projectile) :
+		print("Enemy detected")
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
+	elif (body.collision_layer & (1 << 0) and !is_player_projectile) :
+		print("Player detected")
+		if body.has_method("take_damage"):
+			body.take_damage(damage)
 	queue_free()
 
 

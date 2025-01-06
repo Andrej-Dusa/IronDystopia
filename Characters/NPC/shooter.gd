@@ -20,7 +20,7 @@ func load_stats(character_stats: BaseStats) -> void:
 func _ready() -> void:
 	load_stats(stats)
 	player = get_parent().find_child("Player")
-	$CharacterBody2D/AnimatedSprite2D.play("default")
+	$AnimatedSprite2D.play("default")
 	
 func _physics_process(delta: float) -> void:
 	_aim()
@@ -61,3 +61,15 @@ func _shoot():
 	instance.range = stats.attack_range
 	game.add_child.call_deferred(instance)
 	timer.start(stats.atack_speed)
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func get_damage():
+	return stats.damage
+
+func die():
+	queue_free()

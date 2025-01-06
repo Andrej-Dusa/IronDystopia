@@ -35,3 +35,6 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		player_behaviour = true
 	if (body.collision_layer & (1 << 4)) :
 		print("Player projectile detected")
+
+func get_damage():
+	return stats.damage

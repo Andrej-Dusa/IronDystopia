@@ -30,3 +30,6 @@ func _physics_process(delta: float) -> void:
 func get_random_outcome() -> int:
 	var outcomes = [-200, 200]
 	return outcomes[randi() % outcomes.size()]
+
+func get_damage():
+	return stats.damage

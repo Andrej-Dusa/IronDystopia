@@ -81,3 +81,6 @@ func _on_waiting_timeout() -> void:
 func _on_moving_duration_timeout() -> void:
 	move = false
 	timer.start(stats.atack_speed)
+
+func get_damage():
+	return stats.damage
