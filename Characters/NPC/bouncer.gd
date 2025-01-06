@@ -33,3 +33,16 @@ func get_random_outcome() -> int:
 
 func get_damage():
 	return stats.damage
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.3:
+		game.spawn_item(position)
+	queue_free()

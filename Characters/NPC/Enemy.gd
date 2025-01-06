@@ -38,3 +38,16 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 
 func get_damage():
 	return stats.damage
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.85:
+		game.spawn_item(position)
+	queue_free()

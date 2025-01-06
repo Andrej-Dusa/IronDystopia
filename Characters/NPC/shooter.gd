@@ -72,4 +72,8 @@ func get_damage():
 	return stats.damage
 
 func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.85:
+		game.spawn_item(position)
 	queue_free()

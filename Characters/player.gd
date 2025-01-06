@@ -19,7 +19,7 @@ signal healthUpdated()
 signal initialHPUpdate()
 signal killed()
 
-var currentHealth = 0
+var currentHealth : int = 0
 
 func load_stats() -> void:
 	var defaultStats = load("res://Characters/PlayerStats.tres")
@@ -98,15 +98,19 @@ func add_to_inventory(item):
 func stat_change(item, data):
 	if item != null:
 		stats.max_health -= item.data.health
+		currentHealth -= item.data.health
+		emit_signal("healthUpdated")
 		stats.damage -= item.data.damage
 		stats.atack_speed -= item.data.atack_speed
 		stats.attack_range -=item.data.range
 		stats.max_movement_speed -= item.data.movement_speed
-		stats.luck -= item.data.luck
+		stats.luck -= item.data.lucik
 		stats.projectile_speed -= item.data.projectile_speed
 		
 	if data != null:
 		stats.max_health += data.data.health
+		currentHealth += data.data.health
+		emit_signal("healthUpdated")
 		stats.damage += data.data.damage
 		stats.atack_speed += data.data.atack_speed
 		stats.attack_range += data.data.range

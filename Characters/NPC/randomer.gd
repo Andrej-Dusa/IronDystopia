@@ -75,7 +75,6 @@ func _process_collision():
 	move = true
 
 func _on_waiting_timeout() -> void:
-	#print("waiting is over")
 	_process_collision()
 	
 func _on_moving_duration_timeout() -> void:
@@ -84,3 +83,16 @@ func _on_moving_duration_timeout() -> void:
 
 func get_damage():
 	return stats.damage
+
+func take_damage(amount):
+	stats.max_health -= amount
+	print("Enemy health is:", stats.max_health)
+	if stats.max_health <= 0:
+		die()
+
+func die():
+	randomize()
+	var probability = randf()
+	if probability > 0.7:
+		game.spawn_item(position)
+	queue_free()
