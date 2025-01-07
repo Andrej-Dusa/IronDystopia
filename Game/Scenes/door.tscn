@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cfvylwrf7c2co"]
+[gd_scene load_steps=41 format=3 uid="uid://cfvylwrf7c2co"]
 
 [ext_resource type="Script" path="res://Game/Scripts/door.gd" id="1_jgm0k"]
 [ext_resource type="Texture2D" uid="uid://bkqfq1usapnqf" path="res://assets/Enviroment/barrier_idle/tile000.png" id="2_18fpa"]
@@ -168,6 +168,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xm5p8"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lahpm"]
 size = Vector2(32, 64)
 
 [node name="Door" type="Node2D"]
@@ -176,17 +179,22 @@ script = ExtResource("1_jgm0k")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ckbq8")
 animation = &"idle_barier"
-frame_progress = 0.39937
+frame_progress = 0.264218
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+light_mask = 3
+visibility_layer = 3
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_xm5p8")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 3
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_xm5p8")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_lahpm")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,37 +1,35 @@
 extends Node
 
-
+class_name Room
 @export var enemy_scene = [preload("res://Characters/NPC/Bouncer.tscn"),
 preload("res://Characters/NPC/Randomer.tscn"),
 preload("res://Characters/NPC/Shooter.tscn")]
 
 @export var num_enemies: int = 3  # Number of enemies per room
-var enemies  # Track spawned enemies
+var enemies = [] # Track spawned enemies
 var is_cleared = false
 var spawn_areas = []
+@export var prev = null
+@export var next = null
+
+func set_next(o_next):
+	self.next = o_next
+	
+func set_prev(o_prev):
+	self.prev = o_prev
 
 func populate_room():
 	if is_cleared:
 		return
-
 	for child in get_children():
-		randomize()
+		if child is PlayerSpawn:
+			child.spawn_entities(self)
+	for child in get_children():
 		if child is spawn:
-			enemies = child.spawn_entities(self, enemy_scene[randi() % enemy_scene.size()])
+			enemies = child.spawn_entities(self, enemy_scene)
 			spawn_areas.append(child)
 	for i in enemies:
 		i.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
-			
-	#var spawn_points = spawn_areas.get_children()
-	#for i in range(num_enemies):
-		#if spawn_points.size() > 0:
-			#var spawn_point = spawn_points[i % spawn_points.size()]
-			#var enemy = enemy_scene.instantiate()
-			#enemy.position = spawn_point.global_position
-			#add_child(enemy)
-			#enemies.append(enemy)
-			# Connect to enemy death signal
-			#enemy.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
 
 func _on_enemy_defeated(enemy):
 	enemies.erase(enemy)
@@ -45,3 +43,26 @@ func unlock_doors():
 	for child in get_children():
 		if child.name == "Door":
 			child.unlock()
+
+func despawn():
+	for i in get_children():
+		if i is PlayerSpawn:
+			for j in i.get_children():
+				if j is Player:
+					i.remove_child(j)
+
+func next_room():
+	var my_parent = get_parent()
+	if next != null:
+		var rooms = my_parent.get_children()
+		for i in rooms:
+			if i is Room:
+				print("ROOOOOOM")
+				i.get_parent().remove_child(i)
+				i.despawn()
+		var new_room = next
+		new_room.populate_room()
+		my_parent.add_child(new_room)
+	
+	
+	

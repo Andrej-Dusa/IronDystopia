@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var timer = $waiting
 @onready var duration = $moving_duration
 
-@onready var projectile = load("res://Game/Projectile.tscn")
-@onready var game = get_tree().get_root().get_node("GameTest")
+@onready var projectile = load("res://Game/Scenes/Projectile.tscn")
+@onready var game = get_tree().get_root().get_node("Dungeon")
 
 var player = null
 var player_behaviour = false
@@ -24,7 +24,7 @@ func load_stats(character_stats: BaseStats) -> void:
 func _ready() -> void:
 	randomize()
 	load_stats(stats)
-	player = get_parent().find_child("Player")
+	player = Enums.player_instance
 	print("This is player:", player)
 	$AnimatedSprite2D.play("default")
 	timer.start(stats.atack_speed)

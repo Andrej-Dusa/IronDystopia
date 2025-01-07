@@ -29,3 +29,10 @@ func _on_body_entered(body):
 		print("Door is locked!")
 	elif body.is_in_group("Player"):
 		print("Player entered unlocked door!")
+		
+		
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body.name == "player":
+		get_parent().call_deferred("next_room") # Replace with function body.

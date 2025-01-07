@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpd0ac08fudjc"]
+[gd_scene load_steps=20 format=3 uid="uid://bpd0ac08fudjc"]
 
 [ext_resource type="Script" path="res://Game/Scripts/room.gd" id="1_srvxu"]
 [ext_resource type="Texture2D" uid="uid://dt10wrjjcfkmy" path="res://assets/Enviroment/neotiles.png" id="1_tdmth"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cabu1nufxt8j8" path="res://assets/Enviroment/tileset x3.png" id="7_rcekp"]
 [ext_resource type="PackedScene" uid="uid://cfvylwrf7c2co" path="res://Game/Scenes/door.tscn" id="9_qojnv"]
 [ext_resource type="PackedScene" uid="uid://djop8nohy6vgi" path="res://Game/Scenes/spawn.tscn" id="10_xvg7l"]
+[ext_resource type="PackedScene" uid="uid://vk28olvrfbnq" path="res://Game/Scenes/player_spawn.tscn" id="11_l5mh8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0lvn"]
 texture = ExtResource("1_tdmth")
@@ -1510,12 +1511,16 @@ layer_1/name = "stuf"
 
 [node name="DoorOut" parent="." instance=ExtResource("9_qojnv")]
 position = Vector2(1008, 288)
+is_locked = false
 
 [node name="DoorIn" parent="." instance=ExtResource("9_qojnv")]
 position = Vector2(16, 288)
 
 [node name="spawn" parent="." instance=ExtResource("10_xvg7l")]
-position = Vector2(128, 96)
+position = Vector2(448, 104)
 
 [node name="spawn2" parent="." instance=ExtResource("10_xvg7l")]
 position = Vector2(880, 480)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("11_l5mh8")]
+position = Vector2(72, 288)

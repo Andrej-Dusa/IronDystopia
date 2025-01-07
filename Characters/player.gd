@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var ACCELERATION = 1000
 @export var FRICTION = 950
 @export var PROJECTILE_CURVE = 0.3
@@ -9,7 +11,7 @@ extends CharacterBody2D
 @onready var axis = Vector2.ZERO
 @onready var lookingDir = Vector2(0,1)
 @onready var attackSpeed = $AttackSpeed
-@onready var game = get_tree().get_root().get_node("GameTest")
+@onready var game = get_tree().get_root().get_node("Dungeon")
 @onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 
 @export var inventory = []

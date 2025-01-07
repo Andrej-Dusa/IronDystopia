@@ -2,7 +2,9 @@ extends Node2D
 
 #@onready var open_menu = preload("res://Menus/MainMenu.tscn") as PackedScene
 @onready var level_container = $Level
-@onready var player_container = $PlayerContainer
+@onready var camera = $Camera2D
+
+var current_level: Node = null
 
 var item_drop_scene = preload("res://Items/ItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -15,10 +17,11 @@ func _ready() -> void:
 		node.hide()
 	if has_node("Level"):
 		print("Level node found")
-		level_container.generate_floor(1)
 		initialize_player()
+		level_container.generate_floor(1)
 	else:
 		print("Level node not found")
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -120,4 +123,4 @@ func rarityGen(resource, itemToSpawn):
 func initialize_player():
 	if Enums.player_instance == null:
 		Enums.player_instance = preload("res://Characters/Player.tscn").instantiate()
-	player_container.add_child(Enums.player_instance)
+		Enums.player_instance.name = "player"
