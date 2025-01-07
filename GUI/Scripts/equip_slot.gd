@@ -28,9 +28,9 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
 		if item == data:
 			return
 		item.reparent(data.get_parent())
-		get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(item, data)
+		Enums.player_instance.stat_change(item, data)
 	else:
-		get_parent().get_parent().get_parent().get_parent().get_parent().get_child(0).stat_change(null, data)
+		Enums.player_instance.stat_change(null, data)
 	data.reparent(self)
 	
 func _gui_input(event: InputEvent) -> void:

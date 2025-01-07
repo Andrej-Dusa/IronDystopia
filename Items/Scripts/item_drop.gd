@@ -11,5 +11,5 @@ func on_player_pickup(player):
 		queue_free()  # Remove the item from the map
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
+	if body.name == "player":
 		on_player_pickup(body)

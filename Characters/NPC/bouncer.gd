@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 @onready var game = get_tree().get_root().get_node("Dungeon")
 
+signal enemy_defeated(reference)
+
 func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats.duplicate() as BaseStats
 	stats.attack_range = 400.0
@@ -45,4 +47,5 @@ func die():
 	var probability = randf()
 	if probability > 0.3:
 		game.spawn_item(position)
+	emit_signal("enemy_defeated", self)
 	queue_free()

@@ -55,7 +55,7 @@ func spawn_item(position):
 	item_instance.item_data = rarityGen(res, itemToSpawn)
 	item_instance.item_data.item_name = itemName
 	Enums.items[itemName] = item_instance.item_data
-	get_parent().add_child.call_deferred(item_instance)
+	self.add_child.call_deferred(item_instance)
 	
 func chooseItemToSpawn():
 	var itemToSpawn
@@ -109,9 +109,12 @@ func rarityGen(resource, itemToSpawn):
 			var current_value = res.get(name)
 			if name not in ["data_type", "item_type", "rarity"]:
 				res.set(name, current_value * mod)
+				res.emit_changed()
+				print(current_value * mod)
+				print("Updated value:", res.get(name))
 			if current_value > 0:
 				var stringFormat = "+%d %s\n"
-				var string = stringFormat % [current_value, name]
+				var string = stringFormat % [res.get(name), name]
 				res.item_description += string
 	var stringBuilder = "res://assets/Objects/1 Icons/%s%s.png"
 	var string = stringBuilder % [itemToSpawn, str(rarity)]

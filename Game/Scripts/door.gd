@@ -1,5 +1,7 @@
 extends Node
 
+class_name Door
+
 @export var is_locked = true
 @onready var static_body = $StaticBody2D# Reference to the StaticBody2D
 @onready var animation_player = $AnimatedSprite2D

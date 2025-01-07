@@ -22,7 +22,7 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
 	
 	
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
-	var child = get_parent().get_parent().get_parent().get_parent().get_child(0)
+	var child = Enums.player_instance
 	var dataParent = data.get_parent()
 	if get_child_count() > 0:
 		var item := get_child(0)

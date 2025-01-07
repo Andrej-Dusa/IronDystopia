@@ -23,7 +23,7 @@ func _ready():
 		
 	global_position = spawnPos
 	global_rotation = spawnRot
-	z_index = zdex
+	z_index = 500
 	
 	var life = $Life
 	life.start(range)	

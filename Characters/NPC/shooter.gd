@@ -8,6 +8,7 @@ extends Node2D
 @onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 @onready var game = get_tree().get_root().get_node("Dungeon")
 
+signal enemy_defeated(reference)
 var player
 
 func load_stats(character_stats: BaseStats) -> void:
@@ -77,4 +78,5 @@ func die():
 	var probability = randf()
 	if probability > 0.85:
 		game.spawn_item(position)
+	emit_signal("enemy_defeated", self)
 	queue_free()

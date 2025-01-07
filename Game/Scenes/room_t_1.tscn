@@ -1511,7 +1511,6 @@ layer_1/name = "stuf"
 
 [node name="DoorOut" parent="." instance=ExtResource("9_qojnv")]
 position = Vector2(1008, 288)
-is_locked = false
 
 [node name="DoorIn" parent="." instance=ExtResource("9_qojnv")]
 position = Vector2(16, 288)

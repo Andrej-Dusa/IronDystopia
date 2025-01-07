@@ -26,13 +26,18 @@ func populate_room():
 			child.spawn_entities(self)
 	for child in get_children():
 		if child is spawn:
-			enemies = child.spawn_entities(self, enemy_scene)
+			enemies += child.spawn_entities(self, enemy_scene)
 			spawn_areas.append(child)
 	for i in enemies:
-		i.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
+		if i.has_signal("enemy_defeated"):
+			var result = i.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
+			print("Connect result:", result)  # 0 (OK) indicates success
+		else:
+			print(i)
 
 func _on_enemy_defeated(enemy):
 	enemies.erase(enemy)
+	print("SIZE ENEMIES",enemies.size())
 	if enemies.size() == 0 and not is_cleared:
 		is_cleared = true
 		Enums.level_layout[get_parent().level_num][1][name] = true
@@ -41,7 +46,7 @@ func _on_enemy_defeated(enemy):
 
 func unlock_doors():
 	for child in get_children():
-		if child.name == "Door":
+		if child is Door:
 			child.unlock()
 
 func despawn():

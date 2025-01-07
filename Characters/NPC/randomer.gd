@@ -9,6 +9,8 @@ extends CharacterBody2D
 @onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 @onready var game = get_tree().get_root().get_node("Dungeon")
 
+signal enemy_defeated(reference)
+
 var player = null
 var player_behaviour = false
 var move = false
@@ -99,4 +101,5 @@ func die():
 	var probability = randf()
 	if probability > 0.7:
 		game.spawn_item(position)
+	emit_signal("enemy_defeated", self)
 	queue_free()
