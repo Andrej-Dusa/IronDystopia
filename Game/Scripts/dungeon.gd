@@ -1,15 +1,26 @@
 extends Node2D
 
 #@onready var open_menu = preload("res://Menus/MainMenu.tscn") as PackedScene
+@onready var level_container = $Level
+@onready var camera = $Camera2D
+
+var current_level: Node = null
 
 var item_drop_scene = preload("res://Items/ItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("Dungeon scene ready!")
 	if not has_node("GUI"):
 		print("Error: Node 'GUI' not found in the scene tree.")
 	else:
-		var node = $"GUI"
+		var node = $GUI
 		node.hide()
+	if has_node("Level"):
+		print("Level node found")
+		initialize_player()
+		level_container.generate_floor(1)
+	else:
+		print("Level node not found")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -108,3 +119,8 @@ func rarityGen(resource, itemToSpawn):
 	res.item_description += "\n"
 	res.item_description += str(rarity)
 	return res
+	
+func initialize_player():
+	if Enums.player_instance == null:
+		Enums.player_instance = preload("res://Characters/Player.tscn").instantiate()
+		Enums.player_instance.name = "player"

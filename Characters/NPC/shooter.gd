@@ -5,8 +5,8 @@ extends Node2D
 @onready var ray_cast = $RayCast2D
 @onready var timer = $Timer
 
-@onready var projectile = load("res://Game/Projectile.tscn")
-@onready var game = get_tree().get_root().get_node("GameTest")
+@onready var projectile = load("res://Game/Scenes/Projectile.tscn")
+@onready var game = get_tree().get_root().get_node("Dungeon")
 
 var player
 
@@ -19,7 +19,7 @@ func load_stats(character_stats: BaseStats) -> void:
 
 func _ready() -> void:
 	load_stats(stats)
-	player = get_parent().find_child("Player")
+	player = Enums.player_instance
 	$AnimatedSprite2D.play("default")
 	
 func _physics_process(delta: float) -> void:

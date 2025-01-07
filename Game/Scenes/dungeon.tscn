@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqymeo8yflayh"]
+
+[ext_resource type="Script" path="res://Game/Scripts/dungeon.gd" id="1_0mfkf"]
+[ext_resource type="Script" path="res://Game/Scripts/level.gd" id="1_ptexg"]
+[ext_resource type="PackedScene" uid="uid://bu1hqyj5jq3r2" path="res://GUI/gui.tscn" id="4_fxvmt"]
+
+[node name="Dungeon" type="Node2D"]
+script = ExtResource("1_0mfkf")
+
+[node name="Level" type="Node2D" parent="."]
+script = ExtResource("1_ptexg")
+
+[node name="RoomContainer" type="Node2D" parent="Level"]
+
+[node name="GUI" parent="." instance=ExtResource("4_fxvmt")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 288)

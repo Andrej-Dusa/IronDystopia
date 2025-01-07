@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 @export var stats : BaseStats
 
-@onready var projectile = load("res://Game/Projectile.tscn")
-@onready var game = get_tree().get_root().get_node("GameTest")
+@onready var projectile = load("res://Game/Scenes/Projectile.tscn")
+@onready var game = get_tree().get_root().get_node("Dungeon")
 
 func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats.duplicate() as BaseStats
