@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name ItemDrop
+
 @export var item_name: String  # Name of the item
 @export var item_data: Resource
 

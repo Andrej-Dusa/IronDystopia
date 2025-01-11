@@ -62,6 +62,7 @@ func next_room():
 		var rooms = my_parent.get_children()
 		my_parent.remove_child(self)
 		self.despawn()
+		my_parent.get_parent().clear_drops()
 		var new_room = next
 		new_room.populate_room()
 		my_parent.add_child(new_room)

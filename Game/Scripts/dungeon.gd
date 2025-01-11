@@ -112,10 +112,10 @@ func rarityGen(resource, itemToSpawn):
 				res.emit_changed()
 				print(current_value * mod)
 				print("Updated value:", res.get(name))
-			if current_value > 0:
-				var stringFormat = "+%d %s\n"
-				var string = stringFormat % [res.get(name), name]
-				res.item_description += string
+				if current_value > 0:
+					var stringFormat = "+%d %s\n"
+					var string = stringFormat % [res.get(name), name]
+					res.item_description += string
 	var stringBuilder = "res://assets/Objects/1 Icons/%s%s.png"
 	var string = stringBuilder % [itemToSpawn, str(rarity)]
 	res.item_texture = load(string)
@@ -125,5 +125,11 @@ func rarityGen(resource, itemToSpawn):
 	
 func initialize_player():
 	if Enums.player_instance == null:
-		Enums.player_instance = preload("res://Characters/Player.tscn").instantiate()
+		Enums.player_instance = preload("res://Characters/player.tscn").instantiate()
 		Enums.player_instance.name = "player"
+
+func clear_drops():
+	var children = get_children()
+	for i in children:
+		if i is ItemDrop:
+			self.remove_child(i)
