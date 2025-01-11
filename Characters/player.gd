@@ -27,7 +27,7 @@ var currentHealth : int = 0
 func load_stats() -> void:
 	var defaultStats = load("res://Characters/PlayerStats.tres")
 	stats = defaultStats.duplicate(true)
-	stats.max_health = 2
+	stats.max_health = 10
 
 func _ready() :
 	load_stats()
@@ -94,7 +94,7 @@ func _shoot() :
 		instance.speed = stats.projectile_speed
 		instance.range = stats.attack_range
 		game.add_child.call_deferred(instance)
-		attackSpeed.start(stats.atack_speed)
+		attackSpeed.start(1/stats.atack_speed)
 
 func add_to_inventory(item):
 	if item:  # Ensure item is valid

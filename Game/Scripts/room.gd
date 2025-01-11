@@ -60,14 +60,10 @@ func next_room():
 	var my_parent = get_parent()
 	if next != null:
 		var rooms = my_parent.get_children()
-		for i in rooms:
-			if i is Room:
-				print("ROOOOOOM")
-				i.get_parent().remove_child(i)
-				i.despawn()
+		my_parent.remove_child(self)
+		self.despawn()
 		var new_room = next
 		new_room.populate_room()
 		my_parent.add_child(new_room)
-	
-	
-	
+	else:
+		get_tree().change_scene_to_file("res://GUI/GameOver/GameOver.tscn")

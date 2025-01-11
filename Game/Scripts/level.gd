@@ -7,7 +7,7 @@ extends Node2D
 	preload("res://Game/Scenes/room_t_4.tscn"),
 	preload("res://Game/Scenes/room_t_5.tscn")
 ]  # Preload your room scenes
-@export var num_rooms: int = 5  # Number of rooms in a floor
+@export var num_rooms: int = 3  # Number of rooms in a floor
 @export var level_num: int = 1
 
 @export var rooms: Array = []
@@ -16,7 +16,7 @@ var current_room_index: int = 0
 func generate_floor(level):
 	level_num = level
 	Enums.level_layout[level_num] = [[],{}]
-	for i in range(num_rooms):
+	for i in num_rooms:
 		# Pick a random room scene
 		var room_scene = room_scenes[randi() % room_scenes.size()]
 		var room_instance = room_scene.instantiate()
@@ -31,7 +31,7 @@ func generate_floor(level):
 func connect_rooms():
 	var size = rooms.size()
 	if size > 1:
-		for i in range(size):
+		for i in size:
 			if i == 0 :
 				rooms[i].set_next(rooms[i+1])
 			elif i == (size-1):

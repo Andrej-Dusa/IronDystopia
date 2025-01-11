@@ -36,5 +36,5 @@ func _on_body_entered(body):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.name == "player":
+	if body.name == "player" and !is_locked:
 		get_parent().call_deferred("next_room") # Replace with function body.
