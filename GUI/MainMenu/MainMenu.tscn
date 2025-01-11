@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cb52noek1uu5t"]
+[gd_scene load_steps=26 format=3 uid="uid://cb52noek1uu5t"]
 
 [ext_resource type="Script" path="res://GUI/Scripts/main_menu.gd" id="1_up4ld"]
 [ext_resource type="FontFile" uid="uid://c4m7n43txsndc" path="res://assets/Fonts/Jazzy_HuitBits.ttf" id="2_s70ub"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bgvrntasmdmj5" path="res://assets/Enviroment/control_panel_idle/tile017.png" id="21_2fv1l"]
 [ext_resource type="Texture2D" uid="uid://djxh0afcgxude" path="res://assets/Enviroment/control_panel_idle/tile018.png" id="22_3w6jw"]
 [ext_resource type="Texture2D" uid="uid://bvr6pgbyt4e4g" path="res://assets/Enviroment/control_panel_idle/tile019.png" id="23_uf7j3"]
+[ext_resource type="AudioStream" uid="uid://vm5ndu53wxj3" path="res://assets/Sounds/smeagol-74365.mp3" id="24_klo7t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bxct8"]
 animations = [{
@@ -150,11 +151,17 @@ autoplay = true
 parameters/looping = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(552, 288)
+position = Vector2(528, 264)
 scale = Vector2(10.375, 10.375)
 sprite_frames = SubResource("SpriteFrames_bxct8")
 animation = &"pc"
-frame_progress = 0.88083
+frame_progress = 0.43645
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_klo7t")
+volume_db = -1.182
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
