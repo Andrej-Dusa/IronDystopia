@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dl7xbh3w1nlhe"]
+[gd_scene load_steps=27 format=3 uid="uid://b5e8novmva7hs"]
 
 [ext_resource type="Script" path="res://Characters/Player.gd" id="1_3f66t"]
 [ext_resource type="Resource" uid="uid://jnbop1mqmajl" path="res://Characters/PlayerStats.tres" id="2_txtk3"]
@@ -85,7 +85,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_01lhc")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 8.0
 }, {
@@ -93,7 +93,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_iws3e")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }, {
@@ -110,18 +110,18 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_r666v")
 }],
-"loop": true,
+"loop": false,
 "name": &"run",
 "speed": 4.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_okd0v"]
-radius = 14.0
-height = 58.0
+radius = 13.0
+height = 50.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yuefm"]
-radius = 15.0
-height = 62.0
+radius = 12.0
+height = 46.0
 
 [sub_resource type="Animation" id="Animation_hgstb"]
 length = 0.001
@@ -171,7 +171,6 @@ material = SubResource("ShaderMaterial_dhdd4")
 position = Vector2(0, -17)
 sprite_frames = SubResource("SpriteFrames_pl0lk")
 animation = &"run"
-frame_progress = 0.853926
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 0)
@@ -209,4 +208,5 @@ libraries = {
 "": SubResource("AnimationLibrary_hibbu")
 }
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="ContactDamageArea" to="." method="_on_contact_damage_area_body_entered"]

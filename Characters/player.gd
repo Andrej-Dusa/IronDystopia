@@ -16,16 +16,18 @@ class_name Player
 @onready var projectile = load("res://Game/Scenes/Projectile.tscn")
 
 @export var inventory = []
+var killed = false
 
 signal healthUpdated()
 signal initialHPUpdate()
-signal killed()
+
 
 var currentHealth : int = 0
 
 func load_stats() -> void:
 	var defaultStats = load("res://Characters/PlayerStats.tres")
 	stats = defaultStats.duplicate(true)
+	stats.max_health = 2
 
 func _ready() :
 	load_stats()
@@ -33,7 +35,8 @@ func _ready() :
 	emit_signal("initialHPUpdate")
 		
 func _physics_process(delta: float) -> void:
-	_move(delta)
+	if !killed:
+		_move(delta)
 
 func _get_looking_dir() :
 	if Input.is_action_pressed("ui_left") :
@@ -135,6 +138,7 @@ func _set_health(value):
 			
 func kill():
 	$AnimatedSprite2D.play("death")
+	killed = true
 	print("Player killed")
 	
 func take_damage(amount):
@@ -150,3 +154,9 @@ func _on_contact_damage_area_body_entered(body: Node2D) -> void:
 		if body.has_method("get_damage"):
 			var damageTaken = body.get_damage()
 			take_damage(damageTaken)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if $AnimatedSprite2D.animation == "death":
+		queue_free()
+		get_tree().change_scene_to_file("res://GUI/GameOver/GameOver.tscn")
