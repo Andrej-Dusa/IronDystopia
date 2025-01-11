@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cs74wu6axce6l"]
+[gd_scene load_steps=8 format=3 uid="uid://cs74wu6axce6l"]
 
 [ext_resource type="Script" path="res://Game/Scripts/intro.gd" id="1_p3d1r"]
 [ext_resource type="Texture2D" uid="uid://c0nd1p0y7bj6t" path="res://assets/Intro/experiment.png" id="2_bwgc7"]
+[ext_resource type="AudioStream" uid="uid://dqyo84p7s5wk3" path="res://assets/Sounds/43337098_heartbeat-03.mp3" id="2_j46v2"]
 [ext_resource type="Texture2D" uid="uid://dy604u33cen7h" path="res://assets/Intro/earth.png" id="3_gxp6k"]
 [ext_resource type="Texture2D" uid="uid://blxolx6se125y" path="res://assets/Intro/wasteland.png" id="4_00oy7"]
 [ext_resource type="Texture2D" uid="uid://dc561uekt08yr" path="res://assets/Intro/shaft.png" id="5_ms8ij"]
@@ -36,6 +37,9 @@ animations = [{
 script = ExtResource("1_p3d1r")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_j46v2")
+autoplay = true
+parameters/looping = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(512, 288)
