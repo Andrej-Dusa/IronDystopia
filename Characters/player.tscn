@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=3 uid="uid://b5e8novmva7hs"]
 
-[ext_resource type="Script" path="res://Characters/Player.gd" id="1_3f66t"]
+[ext_resource type="Script" path="res://Characters/player.gd" id="1_3f66t"]
 [ext_resource type="Resource" uid="uid://jnbop1mqmajl" path="res://Characters/PlayerStats.tres" id="2_txtk3"]
 [ext_resource type="Texture2D" uid="uid://bf8d5bmgtrlid" path="res://assets/Characters/playable/players blue x3.png" id="3_ia0ie"]
 [ext_resource type="Shader" path="res://Characters/flicker_hit.gdshader" id="3_opjby"]
