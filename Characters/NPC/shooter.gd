@@ -16,8 +16,9 @@ func load_stats(character_stats: BaseStats) -> void:
 	stats.atack_speed = 2
 	stats.attack_range = 1.5
 	stats.projectile_speed = 400
-	stats.damage = 1
-
+	stats.damage = 8
+	stats.max_health = 75
+	
 func _ready() -> void:
 	load_stats(stats)
 	player = Enums.player_instance

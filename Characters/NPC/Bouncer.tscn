@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cwdaxvy8u6jt8"]
+[gd_scene load_steps=13 format=3 uid="uid://dw1igq6gw8kbs"]
 
 [ext_resource type="Script" path="res://Characters/NPC/bouncer.gd" id="1_gdpqk"]
 [ext_resource type="Script" path="res://Resources/BaseStats.gd" id="2_ijku1"]

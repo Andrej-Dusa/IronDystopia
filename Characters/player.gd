@@ -27,8 +27,9 @@ var currentHealth : int = 0
 func load_stats() -> void:
 	var defaultStats = load("res://Characters/PlayerStats.tres")
 	stats = defaultStats.duplicate(true)
-	stats.max_health = 10
-
+	stats.max_health = 30
+	stats.damage = 25
+	
 func _ready() :
 	load_stats()
 	currentHealth = stats.max_health
@@ -134,8 +135,7 @@ func _set_health(value):
 		emit_signal("healthUpdated")
 		if currentHealth == 0:
 			kill()
-			emit_signal("killed")
-			
+
 func kill():
 	$AnimatedSprite2D.play("death")
 	killed = true

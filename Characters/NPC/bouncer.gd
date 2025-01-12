@@ -11,8 +11,9 @@ func load_stats(character_stats: BaseStats) -> void:
 	stats = character_stats.duplicate() as BaseStats
 	stats.attack_range = 400.0
 	stats.atack_speed = 2
-	stats.damage = 1
-	stats.max_movement_speed = 400
+	stats.damage = 5
+	stats.max_movement_speed = 350
+	stats.max_health = 100
 	
 func _ready() -> void:
 	randomize()

@@ -7,7 +7,7 @@ extends Node2D
 	preload("res://Game/Scenes/room_t_4.tscn"),
 	preload("res://Game/Scenes/room_t_5.tscn")
 ]  # Preload your room scenes
-@export var num_rooms: int = 3  # Number of rooms in a floor
+@export var num_rooms: int = 5  # Number of rooms in a floor
 @export var level_num: int = 1
 
 @export var rooms: Array = []

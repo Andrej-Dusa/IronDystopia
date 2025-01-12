@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bv81tgfiusbjd"]
+[gd_scene load_steps=10 format=3 uid="uid://bdq5srfxyrj58"]
 
 [ext_resource type="Script" path="res://Characters/NPC/randomer.gd" id="1_it5kl"]
 [ext_resource type="Resource" uid="uid://bjgmrsybivoak" path="res://Characters/NPC/enemies.tres" id="2_mp6gr"]
