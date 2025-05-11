@@ -19,6 +19,7 @@ func _ready() -> void:
 		print("Level node found")
 		initialize_player()
 		level_container.generate_floor(1)
+		level_container.connect("room_exited", Callable(self, "_on_room_exited"))
 	else:
 		print("Level node not found")
 
@@ -133,3 +134,6 @@ func clear_drops():
 	for i in children:
 		if i is ItemDrop:
 			self.remove_child(i)
+			
+func _on_room_exited(prev_pos: Vector2):
+	clear_drops()

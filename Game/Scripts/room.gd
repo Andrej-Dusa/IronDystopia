@@ -1,70 +1,78 @@
 extends Node
 
-class_name Room
-@export var enemy_scene = [preload("res://Characters/NPC/Bouncer.tscn"),
-preload("res://Characters/NPC/Randomer.tscn"),
-preload("res://Characters/NPC/Shooter.tscn")]
+signal door_entered(pos: Vector2)
 
-@export var num_enemies: int = 3  # Number of enemies per room
-var enemies = [] # Track spawned enemies
-var is_cleared = false
-var spawn_areas = []
-@export var prev = null
-@export var next = null
+@export var enemy_scene: Array = [
+	preload("res://Characters/NPC/Bouncer.tscn"),
+	preload("res://Characters/NPC/Randomer.tscn"),
+	preload("res://Characters/NPC/Shooter.tscn")
+]
 
-func set_next(o_next):
-	self.next = o_next
-	
-func set_prev(o_prev):
-	self.prev = o_prev
+var room_position: Vector2
+var level_index: int
+var is_cleared: bool = false
+var connections := {}
+var enemies: Array = []
 
 func populate_room():
+	place_doors()
+
 	if is_cleared:
+		unlock_doors()
 		return
-	for child in get_children():
-		if child is PlayerSpawn:
-			child.spawn_entities(self)
+
 	for child in get_children():
 		if child is spawn:
-			enemies += child.spawn_entities(self, enemy_scene)
-			spawn_areas.append(child)
-	for i in enemies:
-		if i.has_signal("enemy_defeated"):
-			var result = i.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
-			print("Connect result:", result)  # 0 (OK) indicates success
-		else:
-			print(i)
+			var new_enemies = child.spawn_entities(self, enemy_scene)
+			for e in new_enemies:
+				if e.has_signal("enemy_defeated"):
+					e.connect("enemy_defeated", Callable(self, "_on_enemy_defeated"))
+				enemies.append(e)
+
+func place_doors():
+	for dir in connections:
+		var anchor = get_node_or_null("door_" + dir)
+		if anchor:
+			var door = load("res://Game/Scenes/DoorHorizontal.tscn" if dir in ["up", "down"] else "res://Game/Scenes/DoorVertical.tscn").instantiate()
+			door.direction = dir
+			door.connected_room_pos = connections[dir]
+			door.global_position = anchor.global_position
+			door.add_to_group("room_doors")
+			add_child(door)
+
+			if door.has_node("Area2D"):
+				var area = door.get_node("Area2D")
+				await get_tree().process_frame
+				area.body_entered.connect(func(body):
+					if body.name == "player" and not door.is_locked:
+						call_deferred("emit_signal", "door_entered", door.connected_room_pos)
+				)
+
+	for dir in ["up", "down", "left", "right"]:
+		if not connections.has(dir):
+			var anchor = get_node_or_null("door_" + dir)
+			if anchor:
+				var wall = load("res://Game/Scenes/WallPlacer_" + dir + ".tscn").instantiate()
+				wall.global_position = anchor.global_position
+				add_child(wall)
+
+	if is_cleared:
+		await get_tree().process_frame
+		unlock_doors()
 
 func _on_enemy_defeated(enemy):
 	enemies.erase(enemy)
-	print("SIZE ENEMIES",enemies.size())
-	if enemies.size() == 0 and not is_cleared:
+	if enemies.is_empty():
 		is_cleared = true
-		Enums.level_layout[get_parent().level_num][1][name] = true
-		print("Room cleared:", name)
+		Enums.level_layout[level_index][room_position]["cleared"] = true
 		unlock_doors()
 
 func unlock_doors():
-	for child in get_children():
-		if child is Door:
-			child.unlock()
+	for door in get_tree().get_nodes_in_group("room_doors"):
+		if door.is_inside_tree() and door.get_parent() == self:
+			door.unlock()
 
-func despawn():
-	for i in get_children():
-		if i is PlayerSpawn:
-			for j in i.get_children():
-				if j is Player:
-					i.remove_child(j)
-
-func next_room():
-	var my_parent = get_parent()
-	if next != null:
-		var rooms = my_parent.get_children()
-		my_parent.remove_child(self)
-		self.despawn()
-		my_parent.get_parent().clear_drops()
-		var new_room = next
-		new_room.populate_room()
-		my_parent.add_child(new_room)
-	else:
-		get_tree().change_scene_to_file("res://GUI/GameOver/GameOver.tscn")
+func _exit_tree():
+	for door in get_tree().get_nodes_in_group("room_doors"):
+		if door.get_parent() == self:
+			door.remove_from_group("room_doors")

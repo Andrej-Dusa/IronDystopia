@@ -1,47 +1,107 @@
 extends Node2D
 
+signal door_entered(pos: Vector2)
+signal room_exited(prev_pos: Vector2)
+
 @export var room_scenes: Array = [
 	preload("res://Game/Scenes/room_t_1.tscn"),
 	preload("res://Game/Scenes/room_t_2.tscn"),
 	preload("res://Game/Scenes/room_t_3.tscn"),
 	preload("res://Game/Scenes/room_t_4.tscn"),
 	preload("res://Game/Scenes/room_t_5.tscn")
-]  # Preload your room scenes
-@export var num_rooms: int = 5  # Number of rooms in a floor
+]
+@export var num_rooms: int = 5
 @export var level_num: int = 1
 
-@export var rooms: Array = []
-var current_room_index: int = 0
-# Generate a dungeon floor
+var current_room: Node = null
+var entry_direction: String = ""
+var current_room_position: Vector2 = Vector2.ZERO
+var directions := {
+	"up": Vector2(0, -1),
+	"down": Vector2(0, 1),
+	"left": Vector2(-1, 0),
+	"right": Vector2(1, 0)
+}
+
+func _ready():
+	add_to_group("Level")
+
 func generate_floor(level):
 	level_num = level
-	Enums.level_layout[level_num] = [[],{}]
-	for i in num_rooms:
-		# Pick a random room scene
-		var room_scene = room_scenes[randi() % room_scenes.size()]
-		var room_instance = room_scene.instantiate()
-		room_instance.name = "Room%d_lvl_%d" % [i, level_num]
-		rooms.append(room_instance)
-		# Store the room for future access
-		Enums.level_layout[level_num][0].append(room_instance)
-		Enums.level_layout[level_num][1][i] = false
-	connect_rooms()
-	enter_level()
+	Enums.level_layout[level_num] = {}
+	var pos = Vector2(0, 0)
+	Enums.level_layout[level_num][pos] = {
+		"scene_path": room_scenes.pick_random().resource_path,
+		"cleared": false,
+		"connections": {}
+	}
+	for i in range(num_rooms - 1):
+		var possible = directions.keys().filter(func(d): return !Enums.level_layout[level_num].has(pos + directions[d]))
+		if possible.is_empty():
+			break
+		var dir = possible.pick_random()
+		var new_pos = pos + directions[dir]
+		var back = get_reverse_direction(dir)
+		Enums.level_layout[level_num][new_pos] = {
+			"scene_path": room_scenes.pick_random().resource_path,
+			"cleared": false,
+			"connections": {back: pos}
+		}
+		Enums.level_layout[level_num][pos]["connections"][dir] = new_pos
+		pos = new_pos
 
-func connect_rooms():
-	var size = rooms.size()
-	if size > 1:
-		for i in size:
-			if i == 0 :
-				rooms[i].set_next(rooms[i+1])
-			elif i == (size-1):
-				rooms[i].set_prev(rooms[i-1])
-			else:
-				rooms[i].set_prev(rooms[i-1])
-				rooms[i].set_next(rooms[i+1])
+	load_room_at(Vector2(0, 0))
 
-func enter_level():
-	if rooms.size() > 0:
-		var current_room = rooms[0]
-		current_room.populate_room()
-		add_child(current_room)
+func get_reverse_direction(dir):
+	match dir:
+		"up": return "down"
+		"down": return "up"
+		"left": return "right"
+		"right": return "left"
+		_: return ""
+
+func load_room_at(pos: Vector2):
+	if current_room:
+		emit_signal("room_exited", current_room_position)
+		remove_child(current_room)
+		current_room.queue_free()
+		current_room = null
+
+	var data = Enums.level_layout[level_num][pos]
+	var room = load(data.scene_path).instantiate()
+	room.room_position = pos
+	room.level_index = level_num
+	room.is_cleared = data.cleared
+	room.connections = data.connections
+
+	if not room.has_signal("door_entered"):
+		room.add_user_signal("door_entered", ["pos"])
+
+	add_child(room)
+	current_room = room
+	current_room_position = pos
+	room.populate_room()
+
+	room.connect("door_entered", Callable(self, "_on_door_entered"))
+
+	if Enums.player_instance:
+		if Enums.player_instance.get_parent():
+			Enums.player_instance.get_parent().remove_child(Enums.player_instance)
+		room.add_child(Enums.player_instance)
+		var spawn_node = room.get_node_or_null("PlayerSpawn_" + entry_direction)
+		if not spawn_node:
+			spawn_node = room.get_node_or_null("PlayerSpawn_left")  # fallback
+		if spawn_node:
+			Enums.player_instance.global_position = spawn_node.global_position
+
+
+func _on_door_entered(target_room_pos: Vector2):
+	entry_direction = get_reverse_direction(find_direction_between(current_room_position, target_room_pos))
+	print(entry_direction)
+	load_room_at(target_room_pos)
+
+func find_direction_between(from: Vector2, to: Vector2) -> String:
+	for dir in directions:
+		if from + directions[dir] == to:
+			return dir
+	return ""
