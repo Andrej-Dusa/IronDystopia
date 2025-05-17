@@ -98,7 +98,7 @@ func _shoot() :
 		attackSpeed.start(1/stats.atack_speed)
 
 func add_to_inventory(item):
-	if item:  # Ensure item is valid
+	if item:
 		inventory.append(item)
 		get_tree().get_root().get_node("Dungeon").get_child(1).get_child(0).add_item(item.item_name)
 		print("Picked up:", item.item_name)
@@ -135,6 +135,11 @@ func _set_health(value):
 		emit_signal("healthUpdated")
 		if currentHealth == 0:
 			kill()
+			
+func consume(data):
+	if data != null:
+		currentHealth += data.healing
+		emit_signal("healthUpdated")
 
 func kill():
 	$AnimatedSprite2D.play("death")

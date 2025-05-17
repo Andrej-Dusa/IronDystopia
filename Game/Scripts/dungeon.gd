@@ -5,6 +5,7 @@ extends Node2D
 @onready var camera = $Camera2D
 
 var current_level: Node = null
+var rarity_holder
 
 var item_drop_scene = preload("res://Items/ItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -49,11 +50,13 @@ func spawn_item(position):
 	var string = stringFormat % itemToSpawn
 	var res = load(string)
 			
-	var itemName = buildItemName(itemToSpawn)
+	var itemName = buildItemName(itemToSpawn, res.stackable)
 	var item_instance = item_drop_scene.instantiate()
 	item_instance.position = position
-	item_instance.item_name = itemName
 	item_instance.item_data = rarityGen(res, itemToSpawn)
+	if res.stackable:
+		itemName += "%s" % str(rarity_holder)
+	item_instance.item_name = itemName
 	item_instance.item_data.item_name = itemName
 	Enums.items[itemName] = item_instance.item_data
 	self.add_child.call_deferred(item_instance)
@@ -71,7 +74,7 @@ func chooseItemToSpawn():
 			roll -= Enums.spawn_dist[i]
 	return itemToSpawn
 
-func buildItemName(item):
+func buildItemName(item, stackable):
 	var prefix
 	var sufix
 	randomize()
@@ -80,6 +83,8 @@ func buildItemName(item):
 	sufix = Enums.sufixes[randi() % Enums.sufixes.size()]
 	var itemNameFormat = "%s %s of %s"
 	var itemName = itemNameFormat % [prefix, item, sufix]
+	if stackable:
+		itemName = "Generic consumable of healthiness"
 	return itemName
 
 func rarityGen(resource, itemToSpawn):
@@ -87,6 +92,8 @@ func rarityGen(resource, itemToSpawn):
 	var res = resource.duplicate(true)
 	if itemToSpawn != "consumable":
 		res.data_type = Enums.ItemDataType.MAIN
+	else:
+		res.data_type = Enums.ItemDataType.MISC
 	var keys = Enums.rarity.keys()
 	var rarityModMin
 	var rarityModMax
@@ -103,12 +110,13 @@ func rarityGen(resource, itemToSpawn):
 	randomize()
 	var mod = randi_range(rarityModMin, rarityModMax)
 	res.rarity = rarity
+	rarity_holder = rarity
 	for property in res.get_property_list():
 		var name = property.name
 		# Ensure the property is writable and numeric
 		if res.has_method("set") and property.type in [TYPE_INT, TYPE_FLOAT]:
 			var current_value = res.get(name)
-			if name not in ["data_type", "item_type", "rarity"]:
+			if name not in ["data_type", "item_type", "rarity", "count"]:
 				res.set(name, current_value * mod)
 				res.emit_changed()
 				print(current_value * mod)

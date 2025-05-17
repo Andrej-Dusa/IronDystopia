@@ -42,6 +42,7 @@ func _gui_input(event: InputEvent) -> void:
 			if get_child_count() > 0:
 				if (get_child(0).data.data_type == Enums.ItemDataType.MISC):
 					get_child(0).data.count -= 1
+					Enums.player_instance.consume(get_child(0).data)
 					get_child(0).get_child(0).text = str(get_child(0).data.count)
 					if get_child(0).data.count <= 0:
 						get_child(0).queue_free()
