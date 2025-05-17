@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqymeo8yflayh"]
+[gd_scene load_steps=6 format=3 uid="uid://cqymeo8yflayh"]
 
 [ext_resource type="Script" path="res://Game/Scripts/dungeon.gd" id="1_0mfkf"]
 [ext_resource type="Script" path="res://Game/Scripts/level.gd" id="1_ptexg"]
 [ext_resource type="PackedScene" uid="uid://bu1hqyj5jq3r2" path="res://GUI/gui.tscn" id="4_fxvmt"]
 [ext_resource type="AudioStream" uid="uid://diyvhvuh6yqnd" path="res://assets/Sounds/Dark_Tunnel.mp3" id="4_jc146"]
+[ext_resource type="PackedScene" uid="uid://bsl5d2aqquxss" path="res://GUI/GameOver/PauseMenu.tscn" id="5_n3yyq"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_0mfkf")
@@ -22,3 +23,14 @@ position = Vector2(512, 288)
 stream = ExtResource("4_jc146")
 autoplay = true
 parameters/looping = true
+
+[node name="PauseMenu" parent="." instance=ExtResource("5_n3yyq")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 402.0
+offset_top = 155.0
+offset_right = 626.0
+offset_bottom = 371.0
+grow_horizontal = 1
+grow_vertical = 1

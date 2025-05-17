@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://ditc0d5pjob7p"]
+
+[ext_resource type="Script" path="res://GUI/GameOver/game_over.gd" id="1_ys4ev"]
+
+[node name="GameOver" type="CanvasLayer"]
+script = ExtResource("1_ys4ev")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 213.0
+offset_right = -415.0
+offset_bottom = -288.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You have Won
+You have escaped the facility 
+Thank you for playing our game"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Retry" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 334.0
+offset_right = -614.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 585.0
+offset_top = 332.0
+offset_right = -397.0
+offset_bottom = -213.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

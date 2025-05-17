@@ -27,6 +27,8 @@ enum Rarity {NORMAL, RARE, LEGENDARY}
 
 @export var difficulty = 2
 
+@export var number_of_levels = 3
+
 @export var resolution = 3
 
 var level_layout = {}  #stores level instances
