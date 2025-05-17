@@ -2,6 +2,7 @@ extends Node2D
 
 signal door_entered(pos: Vector2)
 signal room_exited(prev_pos: Vector2)
+signal elevator_entered(level)
 
 @export var room_scenes: Array = [
 	preload("res://Game/Scenes/room_t_1.tscn"),
@@ -10,7 +11,7 @@ signal room_exited(prev_pos: Vector2)
 	preload("res://Game/Scenes/room_t_4.tscn"),
 	preload("res://Game/Scenes/room_t_5.tscn")
 ]
-@export var num_rooms: int = 5
+@export var num_rooms: int = 1
 @export var level_num: int = 1
 
 var current_room: Node = null
@@ -25,6 +26,7 @@ var directions := {
 
 func _ready():
 	add_to_group("Level")
+	self.connect("elevator_entered", Callable(self, "_on_move_to_next_level"))
 
 func generate_floor(level):
 	level_num = level
@@ -49,7 +51,8 @@ func generate_floor(level):
 		}
 		Enums.level_layout[level_num][pos]["connections"][dir] = new_pos
 		pos = new_pos
-
+	var last_pos = pos  # already stores the last room's position
+	Enums.level_layout[level_num][last_pos]["has_elevator"] = true
 	load_room_at(Vector2(0, 0))
 
 func get_reverse_direction(dir):
@@ -105,3 +108,6 @@ func find_direction_between(from: Vector2, to: Vector2) -> String:
 		if from + directions[dir] == to:
 			return dir
 	return ""
+	
+func _on_move_to_next_level(level):
+	generate_floor(level)

@@ -30,6 +30,14 @@ func populate_room():
 				enemies.append(e)
 
 func place_doors():
+	var elevator_direction: String = ""
+	var angle_map = {
+		"up": deg_to_rad(270),
+		"down": deg_to_rad(90),
+		"left": deg_to_rad(0),
+		"right": deg_to_rad(180)
+		}
+
 	for dir in connections:
 		var anchor = get_node_or_null("door_" + dir)
 		if anchor:
@@ -47,9 +55,23 @@ func place_doors():
 					if body.name == "player" and not door.is_locked:
 						call_deferred("emit_signal", "door_entered", door.connected_room_pos)
 				)
-
+	# Elevator placement if needed
+	if Enums.level_layout[level_index][room_position].get("has_elevator", false):
+		for dir in ["up", "down", "left", "right"]:
+			if not connections.has(dir):
+				var anchor = get_node_or_null("door_" + dir)
+				if anchor:
+					var elevator = preload("res://Game/Scenes/Elevator.tscn").instantiate()
+					elevator.global_position = anchor.global_position
+					elevator.rotation = angle_map.get(dir, 0)
+					add_child(elevator)
+					if is_cleared:
+						elevator.unlock()
+					elevator_direction = dir
+					break
+					
 	for dir in ["up", "down", "left", "right"]:
-		if not connections.has(dir):
+		if not connections.has(dir) and dir != elevator_direction:
 			var anchor = get_node_or_null("door_" + dir)
 			if anchor:
 				var wall = load("res://Game/Scenes/WallPlacer_" + dir + ".tscn").instantiate()
@@ -66,6 +88,10 @@ func _on_enemy_defeated(enemy):
 		is_cleared = true
 		Enums.level_layout[level_index][room_position]["cleared"] = true
 		unlock_doors()
+		if Enums.level_layout[level_index][room_position].get("has_elevator", true):
+			for child in get_children():
+				if child is Elevator:
+					child.unlock()
 
 func unlock_doors():
 	for door in get_tree().get_nodes_in_group("room_doors"):
