@@ -3,9 +3,10 @@ extends Node2D
 #@onready var open_menu = preload("res://Menus/MainMenu.tscn") as PackedScene
 @onready var level_container = $Level
 @onready var camera = $Camera2D
-
+@onready var pause_menu = $PauseMenu
 var current_level: Node = null
 var rarity_holder
+var paused = false
 
 var item_drop_scene = preload("res://Items/ItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
@@ -41,7 +42,13 @@ func _process(delta: float) -> void:
 		spawn_item(Vector2(100, 100))
 
 func _on_exit_pressed():
-	get_tree().quit()
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else :
+		pause_menu.show()
+		Engine.time_scale = 0
+	paused = !paused
 
 func spawn_item(position):
 	var itemToSpawn = chooseItemToSpawn()

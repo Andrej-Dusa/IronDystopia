@@ -25,6 +25,7 @@ Enums="*res://Globals/Globals.gd"
 window/size/viewport_width=1024
 window/size/viewport_height=576
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor]
 

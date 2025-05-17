@@ -9,9 +9,13 @@ signal elevator_entered(level)
 	preload("res://Game/Scenes/room_t_2.tscn"),
 	preload("res://Game/Scenes/room_t_3.tscn"),
 	preload("res://Game/Scenes/room_t_4.tscn"),
-	preload("res://Game/Scenes/room_t_5.tscn")
+	preload("res://Game/Scenes/room_t_5.tscn"),
+	preload("res://Game/Scenes/room_t_6.tscn"),
+	preload("res://Game/Scenes/room_t_7.tscn"),
+	preload("res://Game/Scenes/room_t_8.tscn"),
+	preload("res://Game/Scenes/room_t_9.tscn"),
 ]
-@export var num_rooms: int = 1
+@export var num_rooms: int = Enums.difficulty * 1
 @export var level_num: int = 1
 
 var current_room: Node = null
@@ -110,4 +114,7 @@ func find_direction_between(from: Vector2, to: Vector2) -> String:
 	return ""
 	
 func _on_move_to_next_level(level):
-	generate_floor(level)
+	if Enums.number_of_levels >= level:
+		generate_floor(level)
+	else:
+		get_tree().change_scene_to_file("res://GUI/GameOver/Winning.tscn")
