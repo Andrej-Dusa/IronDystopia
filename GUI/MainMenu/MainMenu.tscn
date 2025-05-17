@@ -116,22 +116,12 @@ grow_vertical = 2
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../QuitButton")
-focus_neighbor_bottom = NodePath("../LoadButton")
 theme_override_fonts/font = ExtResource("2_s70ub")
 theme_override_font_sizes/font_size = 30
 text = "START"
 
-[node name="LoadButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../SettingsButton")
-theme_override_fonts/font = ExtResource("2_s70ub")
-theme_override_font_sizes/font_size = 30
-text = "LOAD"
-
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-focus_neighbor_top = NodePath("../LoadButton")
 focus_neighbor_bottom = NodePath("../QuitButton")
 theme_override_fonts/font = ExtResource("2_s70ub")
 theme_override_font_sizes/font_size = 30
@@ -164,6 +154,5 @@ autoplay = true
 parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
