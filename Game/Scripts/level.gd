@@ -115,6 +115,6 @@ func find_direction_between(from: Vector2, to: Vector2) -> String:
 	
 func _on_move_to_next_level(level):
 	if Enums.number_of_levels >= level:
-		generate_floor(level)
+		call_deferred("generate_floor", level)
 	else:
 		get_tree().change_scene_to_file("res://GUI/GameOver/Winning.tscn")

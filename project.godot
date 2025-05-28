@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="IronDystopia"
-run/main_scene="res://GUI/MainMenu/MainMenu.tscn"
+run/main_scene="res://Game/Scenes/intro_logo.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/Icons/game_icon.png"
 config/windows_native_icon="res://assets/game_icon.ico"

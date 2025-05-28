@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp47pswfxly7n"
-path="res://.godot/imported/Transporter1.png-49fc1537bf899fbf4b47a1f3c4dd2276.ctex"
+uid="uid://bierl1epoqocg"
+path="res://.godot/imported/controlls.png-de8afaf9bd8498503e8e047bb8aa01fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Enviroment/4 Animated objects/Transporter1.png"
-dest_files=["res://.godot/imported/Transporter1.png-49fc1537bf899fbf4b47a1f3c4dd2276.ctex"]
+source_file="res://assets/GUI/controlls.png"
+dest_files=["res://.godot/imported/controlls.png-de8afaf9bd8498503e8e047bb8aa01fc.ctex"]
 
 [params]
 
