@@ -60,6 +60,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 240.0
 offset_top = 32.0
 offset_right = 976.0

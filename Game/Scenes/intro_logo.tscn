@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtglscevdjsxl"]
 
 [ext_resource type="Script" path="res://Game/Scripts/intro_logo.gd" id="1_dws3t"]
-[ext_resource type="VideoStream" path="res://assets/Logo/logo.ogv" id="1_hxe2l"]
+[ext_resource type="VideoStream" path="res://assets/Logo/complete_logo.ogv" id="2_83o8g"]
 
 [node name="IntroLogo" type="Control"]
 layout_mode = 3
@@ -17,9 +17,9 @@ zoom = Vector2(0.6, 0.6)
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 0
-offset_left = -1016.0
-offset_top = -480.0
-offset_right = 1224.0
-offset_bottom = 896.0
-stream = ExtResource("1_hxe2l")
+offset_left = -920.0
+offset_top = -536.0
+offset_right = 1000.0
+offset_bottom = 552.0
+stream = ExtResource("2_83o8g")
 autoplay = true
